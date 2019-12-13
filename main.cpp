@@ -1,6 +1,7 @@
 #include <iostream>
+#include "lexer.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+//    vector<string>* lexer=lexer::getLexer();
     return 0;
 }
