@@ -1,0 +1,3 @@
+/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/CMakeFiles/flight_sim1.dir
+/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/CMakeFiles/edit_cache.dir
