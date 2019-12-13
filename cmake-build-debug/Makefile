@@ -123,6 +123,33 @@ flight_sim1/fast:
 	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/build
 .PHONY : flight_sim1/fast
 
+lexer.o: lexer.cpp.o
+
+.PHONY : lexer.o
+
+# target to build an object file
+lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/lexer.cpp.o
+.PHONY : lexer.cpp.o
+
+lexer.i: lexer.cpp.i
+
+.PHONY : lexer.i
+
+# target to preprocess a source file
+lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/lexer.cpp.i
+.PHONY : lexer.cpp.i
+
+lexer.s: lexer.cpp.s
+
+.PHONY : lexer.s
+
+# target to generate assembly for a file
+lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/lexer.cpp.s
+.PHONY : lexer.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... flight_sim1"
 	@echo "... edit_cache"
+	@echo "... lexer.o"
+	@echo "... lexer.i"
+	@echo "... lexer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
