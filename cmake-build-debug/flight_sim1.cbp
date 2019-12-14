@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/lexer.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/lexer.h">
+			<Option target="flight_sim1"/>
+		</Unit>
 		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/main.cpp">
 			<Option target="flight_sim1"/>
 		</Unit>

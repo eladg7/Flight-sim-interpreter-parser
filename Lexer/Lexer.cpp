@@ -1,6 +1,6 @@
-#include "lexer.h"
+#include "Lexer.h"
 
-vector<string> lexer::getLinesFromFile() {
+vector<string> Lexer::getLinesFromFile() {
     char buffer[4000];
     getcwd(buffer, sizeof(buffer));
     strcat(buffer, "/");
@@ -22,7 +22,7 @@ vector<string> lexer::getLinesFromFile() {
 }
 
 //stackoverflow
-std::vector<std::string> lexer::split(basic_string<char> s, char delimiter) {
+std::vector<std::string> Lexer::split(basic_string<char> s, char delimiter) {
     std::vector<std::string> tokens;
     std::string token;
     std::istringstream tokenStream(s);
@@ -46,11 +46,11 @@ std::string &trim(std::string &str, const std::string &chars = "\t\n\v\f\r ") {
     return ltrim(rtrim(str, chars), chars);
 }
 
-bool lexer::isCharInString(const string &str, char c) {
+bool Lexer::isCharInString(const string &str, char c) {
     return (strchr(str.c_str(), c));
 }
 
-bool lexer::IsParentheses(char c) {
+bool Lexer::IsParentheses(char c) {
     switch (c) {
         case '(':
         case ')':
@@ -60,11 +60,11 @@ bool lexer::IsParentheses(char c) {
     }
 }
 
-bool lexer::isCondition(const string &str) {
+bool Lexer::isCondition(const string &str) {
     return str == "while" || str == "if";
 }
 
-vector<string> lexer::methodsOpenParethesis(const string &line) {
+vector<string> Lexer::methodsOpenParethesis(const string &line) {
     // splits by open parenthesis
     vector<string> bufferByParenthesis = split(line, '(');
     string afterParenthesis = bufferByParenthesis.at(1);
@@ -81,7 +81,7 @@ vector<string> lexer::methodsOpenParethesis(const string &line) {
     return bufferByParenthesis;
 }
 
-vector<string> lexer::splitByFirstChar(const string &str,char c){
+vector<string> Lexer::splitByFirstChar(const string &str, char c){
     // split string by first char
     vector<string> newVector;
     newVector.push_back(str.substr(0,str.find(c)));
@@ -89,8 +89,8 @@ vector<string> lexer::splitByFirstChar(const string &str,char c){
     return newVector;
 }
 
-void lexer::insertToLexer(vector<string>* lexer, const vector<string> &buffer) {
-   //insert all words to lexer
+void Lexer::insertToLexer(vector<string>* lexer, const vector<string> &buffer) {
+   //insert all words to Lexer
     for (const string &str:buffer) {
         if (isCharInString(str, '(')) {
             vector<string> splitByParenthesis =
@@ -104,7 +104,7 @@ void lexer::insertToLexer(vector<string>* lexer, const vector<string> &buffer) {
     }
 }
 
-vector<string> *lexer::getLexer() {
+vector<string> *Lexer::getLexer() {
     vector<string> linesInFile = getLinesFromFile();
     auto *lexer = new vector<string>;
     vector<string> buffer;
@@ -119,6 +119,7 @@ vector<string> *lexer::getLexer() {
 
         } else if (isCharInString(line, '=')) { //equal lines
             vector<string> equal = split(line, '=');
+            lexer->push_back("=");
             lexer->push_back(trim(equal.at(0)));
             lexer->push_back(trim(equal.at(1)));
         } else {// can be split by spaces

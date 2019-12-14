@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/flight_sim1.dir/lexer.cpp.o"
   "CMakeFiles/flight_sim1.dir/main.cpp.o"
   "flight_sim1"
   "flight_sim1.pdb"
