@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class lexer {
+class Lexer {
 public:
     static vector<string> getLinesFromFile();
 

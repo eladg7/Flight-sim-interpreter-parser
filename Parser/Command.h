@@ -2,13 +2,22 @@
 // Created by elad on 13/12/2019.
 //
 
+#include <vector>
 #include "string"
 
 using namespace std;
 
 class Command {
-public:
-    virtual int execute(string);
+protected:
+    int numberOfParameters;
+    vector<string> commandLexer;
 
-    virtual ~Command();
+public:
+
+    virtual void init(vector<string> &origLexer, int index) = 0;
+
+    virtual int execute() = 0;
+
+    virtual ~Command() {}
 };
+
