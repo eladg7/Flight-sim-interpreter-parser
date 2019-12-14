@@ -18,7 +18,7 @@ using namespace std;
 
 class Lexer {
 public:
-    static vector<string> getLinesFromFile();
+    static vector<string> getLinesFromFile(char* fileName);
 
     static std::vector<std::string> split(basic_string<char> s, char delimiter);
 
@@ -30,7 +30,7 @@ public:
 
     static void insertToLexer(vector<string> *lexer, const vector<string> &buffer);
 
-    static vector<string> *getLexer();
+    static vector<string> *getLexer(char *fileName);
 
     static vector<string> splitByFirstChar(const string &str, char c);
 
