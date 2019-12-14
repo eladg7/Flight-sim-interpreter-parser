@@ -1,6 +1,8 @@
 //
 // Created by elad on 13/12/2019.
 //
+#ifndef FLIGHT_SIM1_COMMAND_H
+#define FLIGHT_SIM1_COMMAND_H
 
 #include <vector>
 #include "string"
@@ -21,3 +23,4 @@ public:
     virtual ~Command() {}
 };
 
+#endif
