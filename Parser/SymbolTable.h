@@ -15,23 +15,21 @@
 using namespace std;
 
 class SymbolTable {
-    map<string,string> generic_small={
-            {"airspeed-indicator_indicated-speed-kt",
-             "/instrumentation/airspeed-indicator/indicated-speed-kt"},
-            {"altimeter_indicated-altitude-ft",
-             "/instrumentation/altimeter/indicated-altitude-ft"},
-            {"altimeter_pressure-alt-ft",
-             "/instrumentation/altimeter/pressure-alt-ft"},
-            {"attitude-indicator_indicated-pitch-deg",
-             "/instrumentation/attitude-indicator/indicated-pitch-deg"}
-    };
-public:
-    static map<string, Variable> symT;
+private:
+    SymbolTable() = default;
+
+    ~SymbolTable() = default;
+
+    static SymbolTable *mInstance;
+    map<string, double> symT;
+  
     mutex mutex_lock;
+public:
+    static SymbolTable *Instance();
 
     void addToSimMap(char *buffer, int size);
 
-    double getFromMap(string str);
+    double getFromMap(const string &str);
 };
 
 

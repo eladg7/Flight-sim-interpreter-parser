@@ -9,8 +9,12 @@ void Parser::parse(vector<string> &lexer) {
 
         if (c != nullptr) {
             c->init(lexer, index);
-            jumpIndex = c->execute();
+            jumpIndex = c->getNumberOfParam();
+            c->execute();
+            index += jumpIndex;
+        }else{
+            index++;
         }
-        index = index + jumpIndex;
+
     }
 }
