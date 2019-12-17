@@ -5,28 +5,21 @@
 #ifndef FLIGHT_SIM1_OPENSERVERCOMMAND_H
 #define FLIGHT_SIM1_OPENSERVERCOMMAND_H
 
-#include <sys/socket.h>
-#include <string>
-#include <iostream>
-#include <unistd.h>
-#include <netinet/in.h>
+
 #include "Command.h"
-#include <mutex>
+#include "Server.h"
 #include <thread>
 
-#define MAX_CONNECTED 10
 
 class OpenServerCommand : public Command {
-    unsigned int port = 0;
-    vector<double> values;
-    mutex mutex_lock;
+    Server server{};
 
-    void addToMap(char * buffer,int size);
 
 public:
 
-    OpenServerCommand() {
+    explicit OpenServerCommand(Server &s) {
         numberOfParameters = 1;
+        server=s;
     }
 
     virtual void init(vector<string> &origLexer, int index);
@@ -35,15 +28,9 @@ public:
 
     virtual ~OpenServerCommand() {}
 
-    int openSocket();
+    static void openServerThread(void* obj);
 
-    int bindListenSocket(int socketFd);
-
-    static void serverThread(void* obj);
-
-    void threadWork();
-
-    void readFromClient(int client_socket);
+    void openServerThreadExecution();
 
 };
 
