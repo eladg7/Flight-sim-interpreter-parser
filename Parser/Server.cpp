@@ -43,18 +43,16 @@ int Server::bindListenSocket(int socketFd) {
     }
 
     return client_socket;
-
-
 }
 
 void Server::readFromClient(int client_socket) {
 //reading from client
-    char buffer[2048] = {0};
+    char buffer[64] = {0};
     int valread = 1;
     while (valread != 0) {
         valread = read(client_socket, buffer, sizeof(buffer));
         SymbolTable st;
-        st.addToMap(buffer, sizeof(buffer));
+        st.addToSimMap(buffer, sizeof(buffer));
         //TODO create ad map and add the values read from server
     }
 }
