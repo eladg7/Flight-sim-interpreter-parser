@@ -7,6 +7,10 @@
 
 #include <map>
 #include <mutex>
+#include "Variable.h"
+#include <vector>
+#include "../Lexer/Lexer.h"
+
 
 using namespace std;
 
@@ -18,11 +22,12 @@ private:
 
     static SymbolTable *mInstance;
     map<string, double> symT;
+  
     mutex mutex_lock;
 public:
     static SymbolTable *Instance();
 
-    void addToMap(char *buffer, int size);
+    void addToSimMap(char *buffer, int size);
 
     double getFromMap(const string &str);
 };

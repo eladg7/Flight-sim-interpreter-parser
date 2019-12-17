@@ -49,6 +49,7 @@ int Server::acceptClients() {
         cout << "Connection successful" << endl;
     }
 
+
     return 0;
 }
 
@@ -65,6 +66,7 @@ void Server::runningServerThread(void *obj) {
 // add values from sim to map.
 
         usleep(5000);
+ 
     }
     close(server->getSocketFD());
 }

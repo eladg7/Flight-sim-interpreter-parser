@@ -13,9 +13,10 @@ SymbolTable* SymbolTable::Instance() {
     return mInstance;
 }
 
-void SymbolTable::addToMap(char *buffer, int size) {
-    mutex_lock.lock();
 
+void SymbolTable::addToSimMap(char *buffer, int size) {
+    mutex_lock.lock();
+    vector<string> values = Lexer::split(buffer, ',');
 
 
     mutex_lock.unlock();
@@ -23,7 +24,6 @@ void SymbolTable::addToMap(char *buffer, int size) {
 
 double SymbolTable::getFromMap(const string &str) {
     mutex_lock.lock();
-
 
 
     mutex_lock.unlock();
