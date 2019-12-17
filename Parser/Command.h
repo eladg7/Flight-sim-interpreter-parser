@@ -16,11 +16,15 @@ protected:
 
 public:
 
+    int getNumberOfParam() {
+        return numberOfParameters;
+    }
+
     virtual void init(vector<string> &origLexer, int index) = 0;
 
-    virtual int execute() = 0;
+    virtual void execute() = 0;
 
-    virtual ~Command() {}
+    virtual ~Command() = default;
 };
 
 #endif

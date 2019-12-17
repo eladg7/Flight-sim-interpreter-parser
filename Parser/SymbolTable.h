@@ -11,13 +11,20 @@
 using namespace std;
 
 class SymbolTable {
-public:
-    static map<string, double> symT;
+private:
+    SymbolTable() = default;
+
+    ~SymbolTable() = default;
+
+    static SymbolTable *mInstance;
+    map<string, double> symT;
     mutex mutex_lock;
+public:
+    static SymbolTable *Instance();
 
     void addToMap(char *buffer, int size);
 
-    double getFromMap(string str);
+    double getFromMap(const string &str);
 };
 
 

@@ -11,29 +11,13 @@ void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
     server.setPort(port);
 }
 
-int OpenServerCommand::execute() {
-    thread th(openServerThread, this);
-    th.join();
-    return numberOfParameters;
+void OpenServerCommand::execute() {
+    server.openSocket();
+    server.bindSocket();
+    server.listenToClients();
+    server.acceptClients();
 }
 
-void OpenServerCommand::openServerThread(void *obj) {
-    auto *myObj = (OpenServerCommand *) obj;
-    myObj->openServerThreadExecution();
-}
-
-void OpenServerCommand::openServerThreadExecution() {
-    int fd= server.openSocket();
-    int clientSocket = server.bindListenSocket(fd);
-
-    if (clientSocket < 0) {
-        cerr << "server could not read data";
-        return;
-    }
-
-    server.readFromClient(clientSocket);
-//    close(socketFd); //closing the listening socket
-}
 
 
 

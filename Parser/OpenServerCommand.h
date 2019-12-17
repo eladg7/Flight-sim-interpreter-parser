@@ -24,13 +24,9 @@ public:
 
     virtual void init(vector<string> &origLexer, int index);
 
-    virtual int execute();
+    virtual void execute();
 
     virtual ~OpenServerCommand() {}
-
-    static void openServerThread(void* obj);
-
-    void openServerThreadExecution();
 
 };
 

@@ -19,8 +19,11 @@ using namespace std;
 #define MAX_CONNECTED 1
 
 class Server {
+private:
     double port{};
-    int socketFD{};
+    int socketFD = -1;
+    sockaddr_in address{};
+    int clientSoc = -1;
 
 public:
 
@@ -28,11 +31,23 @@ public:
         port = p;
     }
 
+    int getSocketFD() { return socketFD; }
+
+    int getClientSoc() { return clientSoc; }
+
     int openSocket();
 
-    int bindListenSocket(int socketFd);
+    int bindSocket();
 
-    void readFromClient(int client_socket);
+    int listenToClients();
+
+    int acceptClients();
+
+    void closeSocketFD(){
+        socketFD=-1;
+    }
+
+    static void runningServerThread(void *obj);
 
 };
 

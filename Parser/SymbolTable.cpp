@@ -3,6 +3,15 @@
 //
 
 #include "SymbolTable.h"
+//singeltone
+
+SymbolTable* SymbolTable::mInstance= nullptr;
+SymbolTable* SymbolTable::Instance() {
+    if(mInstance == nullptr){
+        mInstance=new SymbolTable();
+    }
+    return mInstance;
+}
 
 void SymbolTable::addToMap(char *buffer, int size) {
     mutex_lock.lock();
@@ -12,7 +21,7 @@ void SymbolTable::addToMap(char *buffer, int size) {
     mutex_lock.unlock();
 }
 
-double SymbolTable::getFromMap(string str) {
+double SymbolTable::getFromMap(const string &str) {
     mutex_lock.lock();
 
 
