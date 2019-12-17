@@ -56,17 +56,17 @@ int Server::acceptClients() {
 void Server::runningServerThread(void *obj) {
 
     auto *server = (Server *) obj;
-    char buffer[64];
+    char buffer[1024];
     int isRead = 0;
     while (server->getSocketFD() != -1) {
         isRead = read(server->getClientSoc(), buffer, sizeof(buffer));
         if (isRead < 0) {
             cerr << "Cannot read from server" << endl;
         }
-// add values from sim to map.
+        //TODO add values from sim to map.
 
         usleep(5000);
- 
+
     }
     close(server->getSocketFD());
 }
