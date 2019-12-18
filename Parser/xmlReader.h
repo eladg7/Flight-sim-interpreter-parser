@@ -9,6 +9,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 #define NODE_STARTER "<node>"
 #define NODE_END "</node>"
