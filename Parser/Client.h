@@ -11,8 +11,7 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
-#define  LOCAL_HOST "127.0.0.1"
+#include <cstring>
 
 using namespace std;
 
@@ -22,7 +21,7 @@ private:
 
     int port = 0;
 
-    char *ip = LOCAL_HOST;
+    char *ip = nullptr;
 public:
     int openSocket();
 
