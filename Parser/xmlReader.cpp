@@ -2,7 +2,6 @@
 // Created by elad on 18/12/2019.
 //
 
-#include <algorithm>
 #include "xmlReader.h"
 
 vector<string> xmlReader::readFile(string dir) {
