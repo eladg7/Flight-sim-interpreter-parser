@@ -1,9 +1,4 @@
-//
-// Created by yekaterina on 19/12/2019.
-//
-
 #include "ex1Expressions.h"
-
 
 
 regex doubleNumberRegex("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
@@ -199,7 +194,8 @@ queue<string> Interpreter::getReversePolish(const string &str) {
         char token[2] = {0}; //More room for \0
         token[0] = str.at(i);
         if (variableVector.empty() &&
-            (isdigit(token[0]) || token[0] == '.')) // if the number is not from the variable reading.
+            (isdigit(token[0]) || token[0] == '.'))
+            // if the number is not from the variable reading.
         {
             numberVector.push_back(token[0]);
         } else {
@@ -250,6 +246,18 @@ queue<string> Interpreter::getReversePolish(const string &str) {
     }
     if (countOpenParenthesis > 0) {//more open than closed Parenthesis.
         throw "There is more open parenthesis then closed ones.";
+    }
+    if (!numberVector.empty()) {
+        // finished reading number from string
+        char number[10] = {0};
+        strncpy(number, &numberVector[0], numberVector.size());
+        if (!regex_match(number, doubleNumberRegex)) {
+            strcpy(this->excep, "Character is not number double: ");
+            strcat(this->excep, number);
+            throw this->excep;
+        }
+        outputQueue.push(number);
+        numberVector.clear();
     }
 
     while (!operatorStack.empty()) {
@@ -305,12 +313,4 @@ bool Interpreter::isVariable(const string &s) {
 //    return !(this->VariableAndValue.find(s) == this->VariableAndValue.end()); //variable in map?
     return SymbolTable::Instance()->isInMap(s);
 }
-
-
-
-
-
-
-
-
 
