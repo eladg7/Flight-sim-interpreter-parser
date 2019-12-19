@@ -25,8 +25,6 @@ void SymbolTable::updateSymbolTable() {
             }
         }
     }
-
-
 }
 
 double SymbolTable::getFromMap(const string &str) {

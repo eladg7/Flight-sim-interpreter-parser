@@ -56,17 +56,15 @@ int Server::acceptClients() {
 
 void Server::runningServerThread(Server &server) {
 
-    char buffer[1024];
+    char buffer[264]={0};
     int isRead = 0;
-    while (server.getSocketFD() == -1) {
+
+    while (server.getClientSoc() == -1
+    || server.getSocketFD() == -1) {
         sleep(1);
     }
 
-    while (server.getClientSoc() == -1) {
-        sleep(1);
-    }
-
-    while (server.getSocketFD() != -1 && server.getClientSoc() != -1) {
+    while (server.getSocketFD() != -1) {
         isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
         if (isRead < 0) {
             cerr << "Cannot read from server" << endl;
@@ -76,7 +74,6 @@ void Server::runningServerThread(Server &server) {
         SymbolTable::Instance()->updateSimMap(values);
 
         usleep(5000);
-
     }
 
     close(server.getSocketFD());

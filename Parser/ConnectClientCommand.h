@@ -10,11 +10,11 @@
 
 class ConnectClientCommand : public Command {
 private:
-    Client client{};
+    Client *client{};
 public:
-    explicit ConnectClientCommand(Client &client) {
+    explicit ConnectClientCommand(Client &c) {
         numberOfParameters = 2;
-        this->client = client;
+        client = &c;
     }
 
     virtual void init(vector<string> &origLexer, int index);

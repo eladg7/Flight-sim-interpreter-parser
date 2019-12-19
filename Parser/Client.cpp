@@ -18,13 +18,21 @@ int Client::connectClient() {
     address.sin_addr.s_addr = inet_addr(this->ip);  //the localhost address
     address.sin_port = htons(this->port);
 
-    int is_connect = connect(this->clientSocket, (struct sockaddr *) &address, sizeof(address));
-    if (is_connect == -1) {
-        std::cerr << "Could not connect to host server" << endl;
-        return -2;
-    } else {
-        std::cout << "Client is now connected to server" << endl;
+    int is_connect=-1;
+    int tryNumber=5;
+    while(tryNumber!= 0 ){
+        is_connect = connect(this->clientSocket,
+                            (struct sockaddr *) &address, sizeof(address));
+        if (is_connect != -1) {
+            std::cout << "Client is now connected to server" << endl;
+            break;
+        }else{
+            usleep(5000);
+            tryNumber--;
+        }
     }
+
+
 
     return 1;
 }
@@ -42,10 +50,13 @@ int Client::sendMessage(const char *msg) {
 
 void Client::runningClientThread(Client &client) {
     int sent = 0;
+    while(client.getClientSocket() == -1){
+        sleep(1);
+    }
     while (client.getClientSocket() != -1) {
         //  TODO send msg to server
 
-        usleep(2000);
+        usleep(5000);
     }
 
     close(client.getClientSocket());
