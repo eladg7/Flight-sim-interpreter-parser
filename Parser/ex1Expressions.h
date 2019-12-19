@@ -5,11 +5,7 @@
 #ifndef FLIGHT_SIM1_EX1EXPRESSIONS_H
 #define FLIGHT_SIM1_EX1EXPRESSIONS_H
 
-
 #include <iostream>
-
-using namespace std;
-
 #include <stdexcept>
 #include <cstring>
 #include <regex>
@@ -20,6 +16,7 @@ using namespace std;
 #include "SymbolTable.h"
 #include "Expression.h"
 
+using namespace std;
 
 class Value : public Expression {
     double num;
@@ -133,5 +130,12 @@ public:
     virtual ~Interpreter() = default;
 };
 
+static double getDoubleFromExpression(string parm) {
+    Interpreter interpreter;
+    Expression *e = interpreter.interpret(parm);
+    double value = e->calculate();
+    delete (e);
+    return value;
+}
 
 #endif //FLIGHT_SIM1_EX1EXPRESSIONS_H

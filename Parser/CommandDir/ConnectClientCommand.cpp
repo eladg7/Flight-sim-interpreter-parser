@@ -12,11 +12,7 @@ void ConnectClientCommand::init(vector<std::string> &origLexer, int index) {
         if (Lexer::isCharInString(parm, '"')) {
             Lexer::eraseAllSubStr(parm, "\"");
         } else {//expression
-            Interpreter interpreter;
-            Expression *e = interpreter.interpret(parm);
-            double value = e->calculate();
-            delete (e);
-            parm = to_string(value);
+            parm = to_string(getDoubleFromExpression(parm));
         }
         commandLexer.push_back(parm);
     }
