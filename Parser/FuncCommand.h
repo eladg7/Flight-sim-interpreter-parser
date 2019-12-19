@@ -7,12 +7,13 @@
 
 #include "Command.h"
 
-class FuncComannd : public Command {
-
+class FuncCommand : public Command {
 public:
     virtual void init(vector<string> &origLexer, int index);
 
-    virtual void execute();
+    virtual void execute() = 0;
+
+    ~FuncCommand() {}
 };
 
 #endif //FLIGHT_SIM1_FUNCCOMMAND_H
