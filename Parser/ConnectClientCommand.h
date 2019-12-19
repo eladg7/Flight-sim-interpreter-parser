@@ -8,6 +8,9 @@
 #include "Command.h"
 #include "Client.h"
 #include "../Lexer/Lexer.h"
+#include "Expression.h"
+#include "ex1Expressions.h"
+
 
 class ConnectClientCommand : public Command {
 private:

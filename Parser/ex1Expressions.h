@@ -5,11 +5,7 @@
 #ifndef FLIGHT_SIM1_EX1EXPRESSIONS_H
 #define FLIGHT_SIM1_EX1EXPRESSIONS_H
 
-
 #include <iostream>
-
-using namespace std;
-
 #include <stdexcept>
 #include <cstring>
 #include <regex>
@@ -19,6 +15,9 @@ using namespace std;
 #include "Variable.h"
 #include "SymbolTable.h"
 #include "Expression.h"
+
+using namespace std;
+
 
 
 class Value : public Expression {

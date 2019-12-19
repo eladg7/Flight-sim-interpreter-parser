@@ -4,10 +4,12 @@
 
 #ifndef FLIGHT_SIM1_VARIABLE_H
 #define FLIGHT_SIM1_VARIABLE_H
-using namespace std;
+
 
 #include <string>
 #include "Expression.h"
+
+using namespace std;
 
 enum Interaction {
     FromSim, ToSim, Local
