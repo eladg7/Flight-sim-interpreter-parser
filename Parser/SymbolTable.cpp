@@ -27,12 +27,16 @@ void SymbolTable::updateSymbolTable() {
     }
 }
 
-double SymbolTable::getFromMap(const string &str) {
+bool SymbolTable::isInMap(const string &key) {
     mutex_lock.lock();
-
-
+    bool isIn = true;
+    if (symT.find(key) == symT.end()) {
+        isIn = false;
+    }
     mutex_lock.unlock();
+    return isIn;
 }
+
 
 void SymbolTable::updateSimMap(vector<double> values) {
     mutex_lock.lock();
@@ -44,4 +48,12 @@ void SymbolTable::updateSimMap(vector<double> values) {
     updateSymbolTable();
 
     mutex_lock.unlock();
+}
+
+Variable* SymbolTable::getVarFromMap(const string &key) {
+    mutex_lock.lock();
+    Variable* var = &symT[key];
+
+    mutex_lock.unlock();
+    return var;
 }

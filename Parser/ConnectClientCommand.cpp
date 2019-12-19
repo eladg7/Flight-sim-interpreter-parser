@@ -12,6 +12,7 @@ void ConnectClientCommand::init(vector<std::string> &origLexer, int index) {
     double port = stoi(commandLexer.at(1));
     client->setPort(port);
     auto ip = commandLexer.at(0);
+    //TODO TAKE OF ""
     client->setIP(&ip[0]);
 }
 

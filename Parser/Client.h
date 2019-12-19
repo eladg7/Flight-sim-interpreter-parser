@@ -35,8 +35,8 @@ public:
 
     static void runningClientThread(Client &client);
 
-    void setPort(int port) {
-        this->port = port;
+    void setPort(int p) {
+       port = p;
     }
 
     void setIP(char *x) {
