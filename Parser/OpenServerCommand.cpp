@@ -7,6 +7,12 @@ void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
         string parm= origLexer.at(index + i);
         if(Lexer::isCharInString(parm, '"')){
             Lexer::eraseAllSubStr(parm,"\"");
+        } else {//expression
+            Interpreter interpreter;
+            Expression *e = interpreter.interpret(parm);
+            double value = e->calculate();
+            delete (e);
+            parm = to_string(value);
         }
         commandLexer.push_back(parm);
     }

@@ -1,7 +1,8 @@
+//
+// Created by yekaterina on 19/12/2019.
+//
 
-#ifndef EX1_EXPRESSION_H
-#define EX1_EXPRESSION_H
-
+#ifndef FLIGHT_SIM1_EXPRESSION_H
 using namespace std;
 /**
  * Expression Interface
@@ -12,5 +13,6 @@ public:
     virtual double calculate() = 0;
     virtual ~Expression() {}
 };
+#define FLIGHT_SIM1_EXPRESSION_H
 
-#endif //EX1_EXPRESSION_H
+#endif //FLIGHT_SIM1_EXPRESSION_H
