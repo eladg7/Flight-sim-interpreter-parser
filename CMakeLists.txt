@@ -6,4 +6,4 @@ set(CMAKE_CXX_FLAGS -pthread)
 add_executable(flight_sim1 main.cpp Parser/SymbolTable.cpp Parser/Server.h Parser/Server.h Parser/Server.cpp
         Parser/Parser.cpp Parser/Parser.h Parser/Command.h Parser/OpenServerCommand.cpp Parser/OpenServerCommand.h
         Lexer/Lexer.cpp Lexer/Lexer.h Parser/xmlReader.cpp Parser/xmlReader.h Parser/Client.cpp Parser/Client.h
-        Parser/ConnectClientCommand.cpp Parser/ConnectClientCommand.h)
+        Parser/ConnectClientCommand.cpp Parser/ConnectClientCommand.h Parser/FuncCommand.cpp Parser/FuncCommand.h)
