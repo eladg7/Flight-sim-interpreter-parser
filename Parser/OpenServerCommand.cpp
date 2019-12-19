@@ -8,14 +8,14 @@ void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
     }
 
     double port = stoi(commandLexer.at(0));
-    server.setPort(port);
+    server->setPort(port);
 }
 
 void OpenServerCommand::execute() {
-    server.openSocket();
-    server.bindSocket();
-    server.listenToClients();
-    server.acceptClients();
+    server->openSocket();
+    server->bindSocket();
+    server->listenToClients();
+    server->acceptClients();
 }
 
 

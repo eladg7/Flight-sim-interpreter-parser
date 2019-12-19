@@ -12,14 +12,14 @@
 
 
 class OpenServerCommand : public Command {
-    Server server{};
+    Server *server{};
 
 
 public:
 
     explicit OpenServerCommand(Server &s) {
         numberOfParameters = 1;
-        server=s;
+        server = &s;
     }
 
     virtual void init(vector<string> &origLexer, int index);
