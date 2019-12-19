@@ -62,10 +62,15 @@ void Server::runningServerThread(Server &server) {
         sleep(1);
     }
 
-    while (server.getSocketFD() != -1) {
+    while (server.getClientSoc() == -1) {
+        sleep(1);
+    }
+
+    while (server.getSocketFD() != -1 && server.getClientSoc() != -1) {
         isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
         if (isRead < 0) {
             cerr << "Cannot read from server" << endl;
+            continue;
         }
         vector<double> values = valuesInDouble(buffer);
         SymbolTable::Instance()->updateSimMap(values);
@@ -73,8 +78,8 @@ void Server::runningServerThread(Server &server) {
         usleep(5000);
 
     }
-    close(server.getSocketFD());
 
+    close(server.getSocketFD());
 }
 
 vector<double> Server::valuesInDouble(char *buffer) {

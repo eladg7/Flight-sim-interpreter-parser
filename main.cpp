@@ -25,8 +25,8 @@ int main() {
     Parser parser(mapCommand);
     parser.parse(*lexer);
 
-    server.closeSocketFD();
-    client.closeClientSocket();
+//    server.closeSocketFD();
+//    client.closeClientSocket();
     serverTh.join();
     clientTh.join();
 
