@@ -4,7 +4,11 @@
 
 void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
     for (int i = 1; i <= numberOfParameters; i++) {
-        commandLexer.push_back(origLexer.at(index + i));
+        string parm= origLexer.at(index + i);
+        if(Lexer::isCharInString(parm, '"')){
+            Lexer::eraseAllSubStr(parm,"\"");
+        }
+        commandLexer.push_back(parm);
     }
 
     double port = stoi(commandLexer.at(0));

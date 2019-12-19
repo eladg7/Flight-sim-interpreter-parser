@@ -7,6 +7,7 @@
 
 #include "Command.h"
 #include "Client.h"
+#include "../Lexer/Lexer.h"
 
 class ConnectClientCommand : public Command {
 private:
