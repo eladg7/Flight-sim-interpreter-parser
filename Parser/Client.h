@@ -21,7 +21,7 @@ private:
 
     int port = 0;
 
-    char *ip = nullptr;
+    char ip[64] = {0};
 public:
     int openSocket();
 
@@ -29,22 +29,18 @@ public:
 
     int sendMessage(const char *msg);
 
-    void closeSocket() {
-        this->clientSocket = -1;
-    }
-
     int getClientSocket() {
         return this->clientSocket;
     }
 
-    static void runningClientThread(void *obj);
+    static void runningClientThread(Client &client);
 
     void setPort(int port) {
         this->port = port;
     }
 
-    void setIP(char *ip) {
-        this->ip = ip;
+    void setIP(char *x) {
+        strcat(ip,x);
     }
 
     void closeClientSocket() {

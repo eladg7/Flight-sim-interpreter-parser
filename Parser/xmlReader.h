@@ -27,7 +27,7 @@ private:
     static inline void trim(std::string &s);
 
 public:
-    static vector<string> readFile(string);
+    static vector<string> readXmlFile(string dir);
 };
 
 #endif //FLIGHT_SIM1_XMLREADER_H

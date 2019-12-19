@@ -4,7 +4,7 @@
 // Created by elad on 18/12/2019.
 //
 int Client::openSocket() {
-    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
         cerr << "Could not create a socket" << endl;
         return -1;
@@ -40,14 +40,13 @@ int Client::sendMessage(const char *msg) {
     return 1;
 }
 
-void Client::runningClientThread(void *obj) {
-    auto *client = (Client *) obj;
+void Client::runningClientThread(Client &client) {
     int sent = 0;
-    while (client->getClientSocket() != -1) {
+    while (client.getClientSocket() != -1) {
         //  TODO send msg to server
 
         usleep(2000);
     }
 
-    close(client->getClientSocket());
+    close(client.getClientSocket());
 }

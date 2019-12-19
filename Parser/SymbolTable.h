@@ -10,7 +10,9 @@
 #include "Variable.h"
 #include <vector>
 #include "../Lexer/Lexer.h"
+#include "xmlReader.h"
 
+#define XML_FILE_NAME "generic_small.xml"
 
 using namespace std;
 
@@ -21,15 +23,22 @@ private:
     ~SymbolTable() = default;
 
     static SymbolTable *mInstance;
-    map<string, double> symT;
-  
+    map<string, Variable> symT;
+
+    vector<string> nodesFromSim =
+            xmlReader::readXmlFile(XML_FILE_NAME);
+    map<string, double> simMap;
+
     mutex mutex_lock;
+
 public:
     static SymbolTable *Instance();
 
-    void addToSimMap(char *buffer, int size);
+    void updateSymbolTable();
 
     double getFromMap(const string &str);
+
+    void updateSimMap(vector<double> values);
 };
 
 
