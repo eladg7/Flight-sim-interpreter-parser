@@ -3,6 +3,9 @@
 #include "Parser/Parser.h"
 #include "Parser/Client.h"
 #include "Parser/ConnectClientCommand.h"
+#include "Parser/FuncCommand.h"
+#include "Parser/PrintCommand.h"
+#include "Parser/SleepCommand.h"
 
 int main() {
     char filename[1024] = {0};
@@ -18,6 +21,12 @@ int main() {
     Client client;
     ConnectClientCommand clientCommand(client);
     mapCommand.insert(pair<string, Command *>("connectControlClient", &clientCommand));
+
+    PrintCommand printCommand;
+    mapCommand.insert(pair<string, Command *>("Print", &printCommand));
+
+    SleepCommand sleepCommand;
+    mapCommand.insert(pair<string, Command *>("Sleep", &sleepCommand));
 
     thread serverTh(Server::runningServerThread, ref(server));
     thread clientTh(Client::runningClientThread, ref(client));
