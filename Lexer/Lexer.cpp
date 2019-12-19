@@ -90,7 +90,6 @@ vector<string> Lexer::methodsOpenParethesis(const string &line) {
 
     vector<string> parameters = split(afterParenthesis, ',');
     for (string s:parameters) {
-        s.erase(std::remove(s.begin(), s.end(), '"'), s.end());
         bufferByParenthesis.push_back(s);
     }
     return bufferByParenthesis;
@@ -140,9 +139,9 @@ vector<string> *Lexer::getLexer(char *fileName) {
                 lexer->push_back("=");
                 lexer->push_back(trim(equal.at(0)));
                 lexer->push_back(trim(equal.at(1)));
-            } else {
+            } else {// var x = ...
                 buffer = splitByFirstChar(line, ' ');
-                lexer->push_back(buffer.at(0));
+                lexer->push_back(buffer.at(0));// var
                 buffer = split(buffer.at(1), '=');
                 lexer->push_back("=");
                 insertToLexer(lexer, buffer);

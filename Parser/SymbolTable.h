@@ -11,6 +11,7 @@
 #include <vector>
 #include "../Lexer/Lexer.h"
 #include "xmlReader.h"
+#include "ex1Expressions.h"
 
 #define XML_FILE_NAME "generic_small.xml"
 
@@ -36,7 +37,10 @@ public:
 
     void updateSymbolTable();
 
-    double getFromMap(const string &str);
+    Variable* getVarFromMap(const string &key);
+
+
+    bool isInMap(const string &key);
 
     void updateSimMap(vector<double> values);
 };

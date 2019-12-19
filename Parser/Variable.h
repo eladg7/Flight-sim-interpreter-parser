@@ -1,40 +1,54 @@
 //
-// Created by yekaterina on 17/12/2019.
+// Created by yekaterina on 19/12/2019.
 //
 
 #ifndef FLIGHT_SIM1_VARIABLE_H
 #define FLIGHT_SIM1_VARIABLE_H
-
 using namespace std;
+
+#include <string>
+#include "Expression.h"
+
 enum Interaction {
-    FromSim, ToSim
-};// to ->, from <-
+    FromSim, ToSim, Local
+};
 
-
-class Variable {
-private:
+class Variable : public Expression {
+    string name;
     double value;
-    string simPath;
-    Interaction inter;
+    Interaction inter=Local;
+    string sim="";
 
 public:
-    Variable(const string &arrow, double v, const string &sim) {
-        if ("->" == arrow) {
-            inter = ToSim;
-        } else {
-            inter = FromSim;
-        }
-        value = v;
-        simPath = sim;
-    }
+    Variable(){}
+    Variable(const string &s, double val);
 
-    string getSim() { return simPath; }
+    Variable(const string &s, double val,
+             string interaction, const string &simString);
 
-    double getValue() { return value; }
+    Interaction getInteraction() { return inter; }
+
+    string getSim() { return sim; }
 
     void setValue(double v) { value = v; }
 
-    Interaction getInteraction() { return inter; }
+    double getValue(){return value;}
+
+    Variable &operator++();
+
+    Variable &operator++(int);
+
+    Variable &operator--();
+
+    Variable &operator--(int);
+
+    Variable &operator+=(double num);
+
+    Variable &operator-=(double num);
+
+    double calculate() override;
+
+    ~Variable(){}
 
 };
 
