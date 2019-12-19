@@ -36,7 +36,7 @@ std::vector<std::string> Lexer::split(basic_string<char> s, char delimiter) {
 /*
  * Erase all Occurrences of given substring from main string.
  */
-void eraseAllSubStr(std::string &mainStr, const std::string &toErase) {
+void Lexer::eraseAllSubStr(std::string &mainStr, const std::string &toErase) {
     size_t pos = std::string::npos;
 
     // Search for the substring in string in a loop untill nothing is found
@@ -60,7 +60,7 @@ std::string &trim(std::string &str, const std::string &chars = "\t\n\v\f\r ") {
     return ltrim(rtrim(str, chars), chars);
 }
 
-bool Lexer::isCharInString(const string &str, char c) {
+ bool Lexer::isCharInString(const string &str, char c) {
     return (strchr(str.c_str(), c));
 }
 

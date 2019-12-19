@@ -35,6 +35,8 @@ public:
     static vector<string> splitByFirstChar(const string &str, char c);
 
     static vector<string> methodsOpenParethesis(const string &line);
+
+    static void eraseAllSubStr(std::string &mainStr, const std::string &toErase);
 };
 
 #endif //FLIGHT_SIM1_LEXER_H
