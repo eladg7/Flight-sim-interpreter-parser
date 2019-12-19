@@ -10,12 +10,12 @@ void ConnectClientCommand::init(vector<std::string> &origLexer, int index) {
     }
 
     double port = stoi(commandLexer.at(1));
-    client.setPort(port);
+    client->setPort(port);
     auto ip = commandLexer.at(0);
-    client.setIP(&ip[0]);
+    client->setIP(&ip[0]);
 }
 
 void ConnectClientCommand::execute() {
-    this->client.openSocket();
-    this->client.connectClient();
+    client->openSocket();
+    client->connectClient();
 }
