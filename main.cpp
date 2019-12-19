@@ -1,17 +1,13 @@
 #include "Lexer/Lexer.h"
-#include "Parser/OpenServerCommand.h"
+#include "Parser/CommandDir/OpenServerCommand.h"
 #include "Parser/Parser.h"
 #include "Parser/Client.h"
-#include "Parser/ConnectClientCommand.h"
-#include "Parser/FuncCommand.h"
-#include "Parser/PrintCommand.h"
-#include "Parser/SleepCommand.h"
-#include "Parser/StringUtils.cpp"
+#include "Parser/CommandDir/ConnectClientCommand.h"
+#include "Parser/CommandDir/FuncCommand.h"
+#include "Parser/CommandDir/PrintCommand.h"
+#include "Parser/CommandDir/SleepCommand.h"
 
 int main() {
-    char * asasd = "\"asdasdasdasd\"";
-    char result[123];
-    sprintf(result, "%s",removeApostrophes(asasd).c_str());
     char filename[1024] = {0};
     strcpy(filename, "fly.txt");
     vector<string> *lexer = Lexer::getLexer(filename);

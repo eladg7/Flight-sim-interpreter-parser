@@ -1,5 +1,5 @@
 #include "OpenServerCommand.h"
-#include "SymbolTable.h"
+#include "../SymbolTable.h"
 // Server side C/C++ program to demonstrate Socket programming
 
 void OpenServerCommand::init(vector<std::string> &origLexer, int index) {

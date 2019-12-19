@@ -7,7 +7,7 @@
 
 
 #include "Command.h"
-#include "Server.h"
+#include "../Server.h"
 #include <thread>
 
 
