@@ -20,18 +20,27 @@ using namespace std;
 
 class Server {
 private:
-    double port{};
-    int socketFD = -1;
+    double port;
+    int socketFD ;
     sockaddr_in address{};
-    int clientSoc = -1;
+    int clientSoc;
 
 public:
+    Server(){
+        port=0;
+        socketFD=-1;
+        clientSoc=-1;
+
+    }
+
 
     void setPort(double p) {
         port = p;
     }
 
-    int getSocketFD() { return socketFD; }
+    int getSocketFD() {
+        return socketFD;
+    }
 
     int getClientSoc() { return clientSoc; }
 
@@ -43,11 +52,14 @@ public:
 
     int acceptClients();
 
-    void closeSocketFD(){
-        socketFD=-1;
+    void closeSocketFD() {
+        socketFD = -1;
     }
 
-    static void runningServerThread(void *obj);
+    static vector<double> valuesInDouble(char *buffer);
+
+    static void runningServerThread(Server &server);
+
 
 };
 

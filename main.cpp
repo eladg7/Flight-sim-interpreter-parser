@@ -1,8 +1,6 @@
-#include <iostream>
 #include "Lexer/Lexer.h"
 #include "Parser/OpenServerCommand.h"
 #include "Parser/Parser.h"
-#include "Parser/xmlReader.h"
 #include "Parser/Client.h"
 #include "Parser/ConnectClientCommand.h"
 
@@ -21,8 +19,8 @@ int main() {
     ConnectClientCommand clientCommand(client);
     mapCommand.insert(pair<string, Command *>("connectControlClient", &clientCommand));
 
-    thread serverTh(Server::runningServerThread, &server);
-    thread clientTh(Client::runningClientThread, &client);
+    thread serverTh(Server::runningServerThread, ref(server));
+    thread clientTh(Client::runningClientThread, ref(client));
 
     Parser parser(mapCommand);
     parser.parse(*lexer);

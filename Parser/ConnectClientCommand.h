@@ -13,7 +13,7 @@ private:
     Client client{};
 public:
     explicit ConnectClientCommand(Client &client) {
-        numberOfParameters = 1;
+        numberOfParameters = 2;
         this->client = client;
     }
 

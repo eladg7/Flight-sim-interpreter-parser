@@ -4,7 +4,7 @@
 
 #include "xmlReader.h"
 
-vector<string> xmlReader::readFile(string dir) {
+vector<string> xmlReader::readXmlFile(string dir) {
     vector<string> linesVector;
 
     ifstream in(dir);

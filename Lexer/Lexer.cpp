@@ -89,7 +89,8 @@ vector<string> Lexer::methodsOpenParethesis(const string &line) {
     bufferByParenthesis.erase(bufferByParenthesis.end() - 1);
 
     vector<string> parameters = split(afterParenthesis, ',');
-    for (const string &s:parameters) {
+    for (string s:parameters) {
+        s.erase(std::remove(s.begin(), s.end(), '"'), s.end());
         bufferByParenthesis.push_back(s);
     }
     return bufferByParenthesis;
@@ -105,14 +106,16 @@ vector<string> Lexer::splitByFirstChar(const string &str, char c) {
 
 void Lexer::insertToLexer(vector<string> *lexer, const vector<string> &buffer) {
     //insert all words to Lexer
-    for (const string &str:buffer) {
+    for ( string str:buffer) {
         if (isCharInString(str, '(')) {
             vector<string> splitByParenthesis =
                     methodsOpenParethesis(str);
-            for (const string &word:splitByParenthesis) {
+            for ( string word:splitByParenthesis) {
+                eraseAllSubStr(word, "\t");
                 lexer->push_back(word);
             }
         } else {
+            eraseAllSubStr(str, "\t");
             lexer->push_back(str);
         }
     }
@@ -123,7 +126,7 @@ vector<string> *Lexer::getLexer(char *fileName) {
     auto *lexer = new vector<string>;
     vector<string> buffer;
     for (const string &line:linesInFile) {
-        if (line.rfind("//", 0) == 0) {
+        if (line.empty() || line.rfind("//", 0) == 0) {
             continue; //comment
         }
         if (isCondition(split(line, ' ').at(0))) { //conditions
@@ -145,12 +148,13 @@ vector<string> *Lexer::getLexer(char *fileName) {
                 insertToLexer(lexer, buffer);
             }
         } else {// can be split by spaces
-            if (split(line, '(').at(0) != "Print") {//print can have spaces inside
+            string splitByP = split(line, '(').at(0);
+            if (splitByP.find("Print")
+                == string::npos) {
+                //print can have spaces inside
                 buffer = split(line, ' ');
             } else {
-                string str = line;
-                eraseAllSubStr(str, "\t");
-                buffer.push_back(str);
+                buffer.push_back(line);
             }
             insertToLexer(lexer, buffer);
         }
