@@ -1,11 +1,11 @@
 #include "Lexer/Lexer.h"
-#include "Parser/OpenServerCommand.h"
+#include "Parser/CommandDir/OpenServerCommand.h"
 #include "Parser/Parser.h"
 #include "Parser/Client.h"
-#include "Parser/ConnectClientCommand.h"
-#include "Parser/FuncCommand.h"
-#include "Parser/PrintCommand.h"
-#include "Parser/SleepCommand.h"
+#include "Parser/CommandDir/ConnectClientCommand.h"
+#include "Parser/CommandDir/FuncCommand.h"
+#include "Parser/CommandDir/PrintCommand.h"
+#include "Parser/CommandDir/SleepCommand.h"
 
 int main() {
     char filename[1024] = {0};

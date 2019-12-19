@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/elad/clion-2019.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/elad/clion-2019.3/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yekaterina/CLionProjects/flight_sim1
+CMAKE_SOURCE_DIR = /home/elad/CLionProjects/THIS_IS_THE_PROJECT
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug
+CMAKE_BINARY_DIR = /home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/clion-2019.2.5/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/elad/clion-2019.3/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/opt/clion-2019.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/elad/clion-2019.3/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/CMakeFiles /home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/CMakeFiles /home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,329 @@ flight_sim1/fast:
 	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/build
 .PHONY : flight_sim1/fast
 
-lexer.o: lexer.cpp.o
+Lexer/Lexer.o: Lexer/Lexer.cpp.o
 
-.PHONY : lexer.o
+.PHONY : Lexer/Lexer.o
 
 # target to build an object file
-lexer.cpp.o:
-	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/lexer.cpp.o
-.PHONY : lexer.cpp.o
+Lexer/Lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Lexer/Lexer.cpp.o
+.PHONY : Lexer/Lexer.cpp.o
 
-lexer.i: lexer.cpp.i
+Lexer/Lexer.i: Lexer/Lexer.cpp.i
 
-.PHONY : lexer.i
+.PHONY : Lexer/Lexer.i
 
 # target to preprocess a source file
-lexer.cpp.i:
-	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/lexer.cpp.i
-.PHONY : lexer.cpp.i
+Lexer/Lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Lexer/Lexer.cpp.i
+.PHONY : Lexer/Lexer.cpp.i
 
-lexer.s: lexer.cpp.s
+Lexer/Lexer.s: Lexer/Lexer.cpp.s
 
-.PHONY : lexer.s
+.PHONY : Lexer/Lexer.s
 
 # target to generate assembly for a file
-lexer.cpp.s:
-	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/lexer.cpp.s
-.PHONY : lexer.cpp.s
+Lexer/Lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Lexer/Lexer.cpp.s
+.PHONY : Lexer/Lexer.cpp.s
+
+Parser/Client.o: Parser/Client.cpp.o
+
+.PHONY : Parser/Client.o
+
+# target to build an object file
+Parser/Client.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Client.cpp.o
+.PHONY : Parser/Client.cpp.o
+
+Parser/Client.i: Parser/Client.cpp.i
+
+.PHONY : Parser/Client.i
+
+# target to preprocess a source file
+Parser/Client.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Client.cpp.i
+.PHONY : Parser/Client.cpp.i
+
+Parser/Client.s: Parser/Client.cpp.s
+
+.PHONY : Parser/Client.s
+
+# target to generate assembly for a file
+Parser/Client.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Client.cpp.s
+.PHONY : Parser/Client.cpp.s
+
+Parser/ConnectClientCommand.o: Parser/ConnectClientCommand.cpp.o
+
+.PHONY : Parser/ConnectClientCommand.o
+
+# target to build an object file
+Parser/ConnectClientCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/ConnectClientCommand.cpp.o
+.PHONY : Parser/ConnectClientCommand.cpp.o
+
+Parser/ConnectClientCommand.i: Parser/ConnectClientCommand.cpp.i
+
+.PHONY : Parser/ConnectClientCommand.i
+
+# target to preprocess a source file
+Parser/ConnectClientCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/ConnectClientCommand.cpp.i
+.PHONY : Parser/ConnectClientCommand.cpp.i
+
+Parser/ConnectClientCommand.s: Parser/ConnectClientCommand.cpp.s
+
+.PHONY : Parser/ConnectClientCommand.s
+
+# target to generate assembly for a file
+Parser/ConnectClientCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/ConnectClientCommand.cpp.s
+.PHONY : Parser/ConnectClientCommand.cpp.s
+
+Parser/FuncCommand.o: Parser/FuncCommand.cpp.o
+
+.PHONY : Parser/FuncCommand.o
+
+# target to build an object file
+Parser/FuncCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/FuncCommand.cpp.o
+.PHONY : Parser/FuncCommand.cpp.o
+
+Parser/FuncCommand.i: Parser/FuncCommand.cpp.i
+
+.PHONY : Parser/FuncCommand.i
+
+# target to preprocess a source file
+Parser/FuncCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/FuncCommand.cpp.i
+.PHONY : Parser/FuncCommand.cpp.i
+
+Parser/FuncCommand.s: Parser/FuncCommand.cpp.s
+
+.PHONY : Parser/FuncCommand.s
+
+# target to generate assembly for a file
+Parser/FuncCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/FuncCommand.cpp.s
+.PHONY : Parser/FuncCommand.cpp.s
+
+Parser/OpenServerCommand.o: Parser/OpenServerCommand.cpp.o
+
+.PHONY : Parser/OpenServerCommand.o
+
+# target to build an object file
+Parser/OpenServerCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/OpenServerCommand.cpp.o
+.PHONY : Parser/OpenServerCommand.cpp.o
+
+Parser/OpenServerCommand.i: Parser/OpenServerCommand.cpp.i
+
+.PHONY : Parser/OpenServerCommand.i
+
+# target to preprocess a source file
+Parser/OpenServerCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/OpenServerCommand.cpp.i
+.PHONY : Parser/OpenServerCommand.cpp.i
+
+Parser/OpenServerCommand.s: Parser/OpenServerCommand.cpp.s
+
+.PHONY : Parser/OpenServerCommand.s
+
+# target to generate assembly for a file
+Parser/OpenServerCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/OpenServerCommand.cpp.s
+.PHONY : Parser/OpenServerCommand.cpp.s
+
+Parser/Parser.o: Parser/Parser.cpp.o
+
+.PHONY : Parser/Parser.o
+
+# target to build an object file
+Parser/Parser.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Parser.cpp.o
+.PHONY : Parser/Parser.cpp.o
+
+Parser/Parser.i: Parser/Parser.cpp.i
+
+.PHONY : Parser/Parser.i
+
+# target to preprocess a source file
+Parser/Parser.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Parser.cpp.i
+.PHONY : Parser/Parser.cpp.i
+
+Parser/Parser.s: Parser/Parser.cpp.s
+
+.PHONY : Parser/Parser.s
+
+# target to generate assembly for a file
+Parser/Parser.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Parser.cpp.s
+.PHONY : Parser/Parser.cpp.s
+
+Parser/PrintCommand.o: Parser/PrintCommand.cpp.o
+
+.PHONY : Parser/PrintCommand.o
+
+# target to build an object file
+Parser/PrintCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/PrintCommand.cpp.o
+.PHONY : Parser/PrintCommand.cpp.o
+
+Parser/PrintCommand.i: Parser/PrintCommand.cpp.i
+
+.PHONY : Parser/PrintCommand.i
+
+# target to preprocess a source file
+Parser/PrintCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/PrintCommand.cpp.i
+.PHONY : Parser/PrintCommand.cpp.i
+
+Parser/PrintCommand.s: Parser/PrintCommand.cpp.s
+
+.PHONY : Parser/PrintCommand.s
+
+# target to generate assembly for a file
+Parser/PrintCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/PrintCommand.cpp.s
+.PHONY : Parser/PrintCommand.cpp.s
+
+Parser/Server.o: Parser/Server.cpp.o
+
+.PHONY : Parser/Server.o
+
+# target to build an object file
+Parser/Server.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Server.cpp.o
+.PHONY : Parser/Server.cpp.o
+
+Parser/Server.i: Parser/Server.cpp.i
+
+.PHONY : Parser/Server.i
+
+# target to preprocess a source file
+Parser/Server.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Server.cpp.i
+.PHONY : Parser/Server.cpp.i
+
+Parser/Server.s: Parser/Server.cpp.s
+
+.PHONY : Parser/Server.s
+
+# target to generate assembly for a file
+Parser/Server.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/Server.cpp.s
+.PHONY : Parser/Server.cpp.s
+
+Parser/SleepCommand.o: Parser/SleepCommand.cpp.o
+
+.PHONY : Parser/SleepCommand.o
+
+# target to build an object file
+Parser/SleepCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/SleepCommand.cpp.o
+.PHONY : Parser/SleepCommand.cpp.o
+
+Parser/SleepCommand.i: Parser/SleepCommand.cpp.i
+
+.PHONY : Parser/SleepCommand.i
+
+# target to preprocess a source file
+Parser/SleepCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/SleepCommand.cpp.i
+.PHONY : Parser/SleepCommand.cpp.i
+
+Parser/SleepCommand.s: Parser/SleepCommand.cpp.s
+
+.PHONY : Parser/SleepCommand.s
+
+# target to generate assembly for a file
+Parser/SleepCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/SleepCommand.cpp.s
+.PHONY : Parser/SleepCommand.cpp.s
+
+Parser/StringUtils.o: Parser/StringUtils.cpp.o
+
+.PHONY : Parser/StringUtils.o
+
+# target to build an object file
+Parser/StringUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/StringUtils.cpp.o
+.PHONY : Parser/StringUtils.cpp.o
+
+Parser/StringUtils.i: Parser/StringUtils.cpp.i
+
+.PHONY : Parser/StringUtils.i
+
+# target to preprocess a source file
+Parser/StringUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/StringUtils.cpp.i
+.PHONY : Parser/StringUtils.cpp.i
+
+Parser/StringUtils.s: Parser/StringUtils.cpp.s
+
+.PHONY : Parser/StringUtils.s
+
+# target to generate assembly for a file
+Parser/StringUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/StringUtils.cpp.s
+.PHONY : Parser/StringUtils.cpp.s
+
+Parser/SymbolTable.o: Parser/SymbolTable.cpp.o
+
+.PHONY : Parser/SymbolTable.o
+
+# target to build an object file
+Parser/SymbolTable.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/SymbolTable.cpp.o
+.PHONY : Parser/SymbolTable.cpp.o
+
+Parser/SymbolTable.i: Parser/SymbolTable.cpp.i
+
+.PHONY : Parser/SymbolTable.i
+
+# target to preprocess a source file
+Parser/SymbolTable.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/SymbolTable.cpp.i
+.PHONY : Parser/SymbolTable.cpp.i
+
+Parser/SymbolTable.s: Parser/SymbolTable.cpp.s
+
+.PHONY : Parser/SymbolTable.s
+
+# target to generate assembly for a file
+Parser/SymbolTable.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/SymbolTable.cpp.s
+.PHONY : Parser/SymbolTable.cpp.s
+
+Parser/xmlReader.o: Parser/xmlReader.cpp.o
+
+.PHONY : Parser/xmlReader.o
+
+# target to build an object file
+Parser/xmlReader.cpp.o:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/xmlReader.cpp.o
+.PHONY : Parser/xmlReader.cpp.o
+
+Parser/xmlReader.i: Parser/xmlReader.cpp.i
+
+.PHONY : Parser/xmlReader.i
+
+# target to preprocess a source file
+Parser/xmlReader.cpp.i:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/xmlReader.cpp.i
+.PHONY : Parser/xmlReader.cpp.i
+
+Parser/xmlReader.s: Parser/xmlReader.cpp.s
+
+.PHONY : Parser/xmlReader.s
+
+# target to generate assembly for a file
+Parser/xmlReader.cpp.s:
+	$(MAKE) -f CMakeFiles/flight_sim1.dir/build.make CMakeFiles/flight_sim1.dir/Parser/xmlReader.cpp.s
+.PHONY : Parser/xmlReader.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,9 +483,42 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... flight_sim1"
 	@echo "... edit_cache"
-	@echo "... lexer.o"
-	@echo "... lexer.i"
-	@echo "... lexer.s"
+	@echo "... Lexer/Lexer.o"
+	@echo "... Lexer/Lexer.i"
+	@echo "... Lexer/Lexer.s"
+	@echo "... Parser/Client.o"
+	@echo "... Parser/Client.i"
+	@echo "... Parser/Client.s"
+	@echo "... Parser/ConnectClientCommand.o"
+	@echo "... Parser/ConnectClientCommand.i"
+	@echo "... Parser/ConnectClientCommand.s"
+	@echo "... Parser/FuncCommand.o"
+	@echo "... Parser/FuncCommand.i"
+	@echo "... Parser/FuncCommand.s"
+	@echo "... Parser/OpenServerCommand.o"
+	@echo "... Parser/OpenServerCommand.i"
+	@echo "... Parser/OpenServerCommand.s"
+	@echo "... Parser/Parser.o"
+	@echo "... Parser/Parser.i"
+	@echo "... Parser/Parser.s"
+	@echo "... Parser/PrintCommand.o"
+	@echo "... Parser/PrintCommand.i"
+	@echo "... Parser/PrintCommand.s"
+	@echo "... Parser/Server.o"
+	@echo "... Parser/Server.i"
+	@echo "... Parser/Server.s"
+	@echo "... Parser/SleepCommand.o"
+	@echo "... Parser/SleepCommand.i"
+	@echo "... Parser/SleepCommand.s"
+	@echo "... Parser/StringUtils.o"
+	@echo "... Parser/StringUtils.i"
+	@echo "... Parser/StringUtils.s"
+	@echo "... Parser/SymbolTable.o"
+	@echo "... Parser/SymbolTable.i"
+	@echo "... Parser/SymbolTable.s"
+	@echo "... Parser/xmlReader.o"
+	@echo "... Parser/xmlReader.i"
+	@echo "... Parser/xmlReader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

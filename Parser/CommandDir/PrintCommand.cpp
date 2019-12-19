@@ -3,7 +3,7 @@
 //
 
 #include "PrintCommand.h"
-#include "../Lexer/Lexer.h"
+#include "../../Lexer/Lexer.h"
 
 void PrintCommand::execute() {
 

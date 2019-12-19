@@ -40,13 +40,7 @@ public:
     }
 
     void setIP(char *x) {
-        if(x[0] == '\"'){
-            x++;
-        }
-        if(x[strlen(x)- 1] == '\"'){
-            x[strlen(x)- 1] = '\0';
-        }
-        strcat(ip,x);
+        strcat(ip, x);
     }
 
     void closeClientSocket() {

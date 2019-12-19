@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "Command.h"
+#include "CommandDir/Command.h"
 
 using namespace std;
 

@@ -4,10 +4,9 @@ project(flight_sim1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS -pthread)
 add_executable(flight_sim1 main.cpp Parser/SymbolTable.cpp Parser/Server.h Parser/Server.h Parser/Server.cpp
-        Parser/Parser.cpp Parser/Parser.h Parser/Command.h Parser/OpenServerCommand.cpp Parser/OpenServerCommand.h
-        Lexer/Lexer.cpp Lexer/Lexer.h Parser/xmlReader.cpp Parser/xmlReader.h Parser/Client.cpp Parser/Client.h
-        Parser/ConnectClientCommand.cpp Parser/ConnectClientCommand.h Parser/FuncCommand.cpp Parser/FuncCommand.h
-        Parser/Expression.h 
-        Parser/Variable.cpp Parser/Variable.h Parser/ex1Expressions.h Parser/ex1Expressions.cpp 
-        Parser/PrintCommand.cpp Parser/PrintCommand.h Parser/SleepCommand.cpp Parser/SleepCommand.h)
-
+        Parser/Parser.cpp Parser/Parser.h Parser/CommandDir/Command.h Parser/CommandDir/OpenServerCommand.cpp
+        Parser/CommandDir/OpenServerCommand.h Lexer/Lexer.cpp Lexer/Lexer.h Parser/xmlReader.cpp Parser/xmlReader.h
+        Parser/Client.cpp Parser/Client.h Parser/CommandDir/ConnectClientCommand.cpp
+        Parser/CommandDir/ConnectClientCommand.h Parser/CommandDir/FuncCommand.cpp Parser/CommandDir/FuncCommand.h
+        Parser/CommandDir/PrintCommand.cpp Parser/CommandDir/PrintCommand.h Parser/CommandDir/SleepCommand.cpp
+        Parser/CommandDir/SleepCommand.h)

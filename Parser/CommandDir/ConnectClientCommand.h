@@ -6,8 +6,8 @@
 #define FLIGHT_SIM1_CONNECTCLIENTCOMMAND_H
 
 #include "Command.h"
-#include "Client.h"
-#include "../Lexer/Lexer.h"
+#include "../Client.h"
+#include "../../Lexer/Lexer.h"
 
 class ConnectClientCommand : public Command {
 private:
