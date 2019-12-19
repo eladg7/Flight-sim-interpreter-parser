@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug"/>
+				<Option working_dir="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug"/>
+				<Option working_dir="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="flight_sim1">
-				<Option output="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/flight_sim1" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug"/>
+				<Option output="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/flight_sim1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 flight_sim1"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 flight_sim1"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="flight_sim1/fast">
-				<Option output="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/flight_sim1" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug"/>
+				<Option output="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/flight_sim1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -67,33 +67,99 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 flight_sim1/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 flight_sim1/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug"/>
+				<Option working_dir="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yekaterina/CLionProjects/flight_sim1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/elad/CLionProjects/THIS_IS_THE_PROJECT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/lexer.cpp">
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Lexer/Lexer.cpp">
 			<Option target="flight_sim1"/>
 		</Unit>
-		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/lexer.h">
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Lexer/Lexer.h">
 			<Option target="flight_sim1"/>
 		</Unit>
-		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/main.cpp">
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Client.cpp">
 			<Option target="flight_sim1"/>
 		</Unit>
-		<Unit filename="/home/yekaterina/CLionProjects/flight_sim1/CMakeLists.txt">
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Client.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Command.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/ConnectClientCommand.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/ConnectClientCommand.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/FuncCommand.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/FuncCommand.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/OpenServerCommand.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/OpenServerCommand.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Parser.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Parser.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/PrintCommand.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/PrintCommand.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Server.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/Server.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/SleepCommand.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/SleepCommand.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/StringUtils.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/SymbolTable.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/SymbolTable.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/xmlReader.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/Parser/xmlReader.h">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/main.cpp">
+			<Option target="flight_sim1"/>
+		</Unit>
+		<Unit filename="/home/elad/CLionProjects/THIS_IS_THE_PROJECT/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

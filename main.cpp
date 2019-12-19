@@ -6,8 +6,12 @@
 #include "Parser/FuncCommand.h"
 #include "Parser/PrintCommand.h"
 #include "Parser/SleepCommand.h"
+#include "Parser/StringUtils.cpp"
 
 int main() {
+    char * asasd = "\"asdasdasdasd\"";
+    char result[123];
+    sprintf(result, "%s",removeApostrophes(asasd).c_str());
     char filename[1024] = {0};
     strcpy(filename, "fly.txt");
     vector<string> *lexer = Lexer::getLexer(filename);
