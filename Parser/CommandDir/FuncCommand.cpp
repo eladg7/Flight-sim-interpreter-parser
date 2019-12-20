@@ -1,7 +1,3 @@
-//
-// Created by elad on 19/12/2019.
-//
-
 #include "../../Lexer/Lexer.h"
 #include "FuncCommand.h"
 #include "../ex1Expressions.h"

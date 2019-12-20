@@ -6,6 +6,7 @@
 #include "Parser/CommandDir/PrintCommand.h"
 #include "Parser/CommandDir/SleepCommand.h"
 #include "Parser/CommandDir/VarDefineCommand.h"
+#include "Parser/CommandDir/ConditionCommand.h"
 #include "Parser/CommandDir/UpdateVarCommand.h"
 
 int main() {
@@ -17,14 +18,14 @@ int main() {
 
     Server server;
     OpenServerCommand serverCommand(server);
-    mapCommand["openDataServer"]= &serverCommand;
+    mapCommand["openDataServer"] = &serverCommand;
 
     Client client;
     ConnectClientCommand clientCommand(client);
-    mapCommand["connectControlClient"]= &clientCommand;
+    mapCommand["connectControlClient"] = &clientCommand;
 
     VarDefineCommand varDefineCommand;
-    mapCommand["var"]=&varDefineCommand;
+    mapCommand["var"] = &varDefineCommand;
 
     UpdateVarCommand updateVarCommand;
     mapCommand["="]=&updateVarCommand;
@@ -33,7 +34,10 @@ int main() {
     mapCommand["Print"]= &printCommand;
 
     SleepCommand sleepCommand;
-    mapCommand["Sleep"]= &sleepCommand;
+    mapCommand["Sleep"] = &sleepCommand;
+
+//    ConditionCommand conditionCommand;
+//    mapCommand["while"] = &conditionCommand;
 
 
     thread serverTh(Server::runningServerThread, ref(server));
