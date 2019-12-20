@@ -1,7 +1,3 @@
-//
-// Created by elad on 19/12/2019.
-//
-
 #ifndef FLIGHT_SIM1_FUNCCOMMAND_H
 #define FLIGHT_SIM1_FUNCCOMMAND_H
 

@@ -95,6 +95,76 @@ double UMinus::calculate() {
     return val * (-1);
 }
 
+BooleanOperator::~BooleanOperator() {
+    delete this->left;
+    delete this->right;
+}
+
+Expression *BooleanOperator::getLeft() {
+    return this->left;
+}
+
+Expression *BooleanOperator::getRight() {
+    return this->right;
+}
+
+GreaterOperator::GreaterOperator(Expression *leftEx, Expression *rightEx) {
+    this->left = leftEx;
+    this->right = rightEx;
+}
+
+double GreaterOperator::calculate() {
+    return left->calculate() > right->calculate();
+}
+
+GreaterEqualOperator::GreaterEqualOperator(Expression *leftEx, Expression *rightEx) {
+    this->left = leftEx;
+    this->right = rightEx;
+}
+
+double GreaterEqualOperator::calculate() {
+    double leftSide = left->calculate();
+    double rightSide = right->calculate();
+    return leftSide == rightSide || leftSide > rightSide;
+}
+
+BelowOperator::BelowOperator(Expression *leftEx, Expression *rightEx) {
+    this->left = leftEx;
+    this->right = rightEx;
+}
+
+double BelowOperator::calculate() {
+    return left->calculate() < right->calculate();
+}
+
+BelowEqualOperator::BelowEqualOperator(Expression *leftEx, Expression *rightEx) {
+    this->left = leftEx;
+    this->right = rightEx;
+}
+
+double BelowEqualOperator::calculate() {
+    double leftSide = left->calculate();
+    double rightSide = right->calculate();
+    return leftSide == rightSide || leftSide < rightSide;
+}
+
+EqualOperator::EqualOperator(Expression *leftEx, Expression *rightEx) {
+    this->left = leftEx;
+    this->right = rightEx;
+}
+
+double EqualOperator::calculate() {
+    return this->left->calculate() == this->right->calculate();
+}
+
+NotEqualOperator::NotEqualOperator(Expression *leftEx, Expression *rightEx) {
+    this->left = leftEx;
+    this->right = rightEx;
+}
+
+double NotEqualOperator::calculate() {
+    return this->left->calculate() != this->right->calculate();
+}
 
 //stackoverflow
 std::vector<std::string> split(const std::string &s, char delimiter) {

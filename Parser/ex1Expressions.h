@@ -1,7 +1,3 @@
-//
-// Created by yekaterina on 19/12/2019.
-//
-
 #ifndef FLIGHT_SIM1_EX1EXPRESSIONS_H
 #define FLIGHT_SIM1_EX1EXPRESSIONS_H
 
@@ -102,6 +98,71 @@ public:
     ~UMinus() override = default;
 };
 
+class BooleanOperator : public Expression {
+protected:
+    Expression *right;
+    Expression *left;
+public:
+    virtual Expression *getLeft();
+
+    virtual Expression *getRight();
+
+    virtual ~BooleanOperator();
+};
+
+class GreaterOperator : public BooleanOperator {
+public:
+    explicit GreaterOperator(Expression *leftEX, Expression *rightEX);
+
+    double calculate() override;
+
+    ~GreaterOperator() override = default;
+};
+
+class GreaterEqualOperator : public BooleanOperator {
+public:
+    explicit GreaterEqualOperator(Expression *leftEX, Expression *rightEX);
+
+    double calculate() override;
+
+    ~GreaterEqualOperator() override = default;
+};
+
+class BelowOperator : public BooleanOperator {
+public:
+    explicit BelowOperator(Expression *leftEX, Expression *rightEX);
+
+    double calculate() override;
+
+    ~BelowOperator() override = default;
+};
+
+class BelowEqualOperator : public BooleanOperator {
+public:
+    explicit BelowEqualOperator(Expression *leftEX, Expression *rightEX);
+
+    double calculate() override;
+
+    ~BelowEqualOperator() override = default;
+};
+
+class EqualOperator : public BooleanOperator {
+public:
+    explicit EqualOperator(Expression *leftEX, Expression *rightEX);
+
+    double calculate() override;
+
+    ~EqualOperator() override = default;
+};
+
+class NotEqualOperator : public BooleanOperator {
+public:
+    explicit NotEqualOperator(Expression *leftEX, Expression *rightEX);
+
+    double calculate() override;
+
+    ~NotEqualOperator() override = default;
+};
 
 class Interpreter {
 private:
@@ -130,11 +191,52 @@ public:
     virtual ~Interpreter() = default;
 };
 
+static vector<string> isBooleanOperator(string expression) {
+    string pattern("<=|>=|==|!=|<|>");
+    regex rx(pattern);
+
+    std::sregex_token_iterator
+            first{expression.begin(), expression.end(), rx, -1},
+            last;
+    return {first, last};
+}
+
+static BooleanOperator *getBooleanOperator(string expression, Expression *left, Expression *right) {
+    BooleanOperator *booleanOperator;
+    if (expression.find(">=") != string::npos) {
+        booleanOperator = new GreaterEqualOperator(left, right);
+    } else if (expression.find(">") != string::npos) {
+        booleanOperator = new GreaterOperator(left, right);
+    } else if (expression.find("<=") != string::npos) {
+        booleanOperator = new BelowEqualOperator(left, right);
+    } else if (expression.find("<") != string::npos) {
+        booleanOperator = new BelowOperator(left, right);
+    } else if (expression.find("==") != string::npos) {
+        booleanOperator = new EqualOperator(left, right);
+    } else {
+        //   it must be '!='
+        booleanOperator = new NotEqualOperator(left, right);
+    }
+
+    return booleanOperator;
+}
+
 static double getDoubleFromExpression(string parm) {
     Interpreter interpreter;
-    Expression *e = interpreter.interpret(parm);
-    double value = e->calculate();
-    delete (e);
+    double value = 0;
+    vector<string> operatorArguments = isBooleanOperator(parm);
+    if (operatorArguments.size() > 1) {
+        //  this means it's a boolean operator
+        Expression *left = interpreter.interpret(operatorArguments.at(0));
+        Expression *right = interpreter.interpret(operatorArguments.at(1));
+        BooleanOperator *op = getBooleanOperator(parm, left, right);
+        value = op->calculate();
+        delete (op);
+    } else {
+        Expression *e = interpreter.interpret(parm);
+        value = e->calculate();
+        delete (e);
+    }
     return value;
 }
 

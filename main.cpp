@@ -6,6 +6,7 @@
 #include "Parser/CommandDir/PrintCommand.h"
 #include "Parser/CommandDir/SleepCommand.h"
 #include "Parser/CommandDir/VarDefineCommand.h"
+#include "Parser/CommandDir/ConditionCommand.h"
 
 int main() {
     char filename[1024] = {0};
@@ -16,20 +17,23 @@ int main() {
 
     Server server;
     OpenServerCommand serverCommand(server);
-    mapCommand["openDataServer"]= &serverCommand;
+    mapCommand["openDataServer"] = &serverCommand;
 
     Client client;
     ConnectClientCommand clientCommand(client);
-    mapCommand["connectControlClient"]= &clientCommand;
+    mapCommand["connectControlClient"] = &clientCommand;
 
     VarDefineCommand varDefineCommand;
-    mapCommand["var"]=&varDefineCommand;
+    mapCommand["var"] = &varDefineCommand;
 
     PrintCommand printCommand;
-    mapCommand["Print"]= &printCommand;
+    mapCommand["Print"] = &printCommand;
 
     SleepCommand sleepCommand;
-    mapCommand["Sleep"]= &sleepCommand;
+    mapCommand["Sleep"] = &sleepCommand;
+
+//    ConditionCommand conditionCommand;
+//    mapCommand["while"] = &conditionCommand;
 
     thread serverTh(Server::runningServerThread, ref(server));
     thread clientTh(Client::runningClientThread, ref(client));
