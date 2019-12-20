@@ -9,6 +9,7 @@
 #include "Parser/CommandDir/ConditionCommand.h"
 #include "Parser/CommandDir/UpdateVarCommand.h"
 #include "Parser/CommandDir/IfConditionCommand.h"
+#include "Parser/CommandDir/WhileConditionCommand.h"
 
 int main() {
     char filename[1024] = {0};
@@ -39,6 +40,9 @@ int main() {
 
     IfConditionCommand ifConditionCommand(&mapCommand);
     mapCommand["if"] = &ifConditionCommand;
+
+    WhileConditionCommand whileConditionCommand(&mapCommand);
+    mapCommand["while"] = &whileConditionCommand;
 //    ConditionCommand conditionCommand;
 //    mapCommand["while"] = &conditionCommand;
 

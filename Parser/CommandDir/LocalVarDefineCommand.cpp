@@ -1,7 +1,3 @@
-//
-// Created by yekaterina on 20/12/2019.
-//
-
 #include "LocalVarDefineCommand.h"
 #include "../ex1Expressions.h"
 
