@@ -6,6 +6,7 @@
 #include "Parser/CommandDir/PrintCommand.h"
 #include "Parser/CommandDir/SleepCommand.h"
 #include "Parser/CommandDir/VarDefineCommand.h"
+#include "Parser/CommandDir/UpdateVarCommand.h"
 
 int main() {
     char filename[1024] = {0};
@@ -25,20 +26,23 @@ int main() {
     VarDefineCommand varDefineCommand;
     mapCommand["var"]=&varDefineCommand;
 
-    PrintCommand printCommand;
+    UpdateVarCommand updateVarCommand;
+    mapCommand["="]=&updateVarCommand;
+
+    PrintCommand printCommand(server,client);
     mapCommand["Print"]= &printCommand;
 
     SleepCommand sleepCommand;
     mapCommand["Sleep"]= &sleepCommand;
 
+
     thread serverTh(Server::runningServerThread, ref(server));
-    thread clientTh(Client::runningClientThread, ref(client));
+    thread clientTh(Client::runningClientThread,ref(client));
 
     Parser parser(mapCommand);
     parser.parse(*lexer);
 
-//    server.closeSocketFD();
-//    client.closeClientSocket();
+
     serverTh.join();
     clientTh.join();
 

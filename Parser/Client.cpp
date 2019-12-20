@@ -1,8 +1,7 @@
+#include <queue>
 #include "Client.h"
+#include "SymbolTable.h"
 
-//
-// Created by elad on 18/12/2019.
-//
 int Client::openSocket() {
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
@@ -18,20 +17,19 @@ int Client::connectClient() {
     address.sin_addr.s_addr = inet_addr(this->ip);  //the localhost address
     address.sin_port = htons(this->port);
 
-    int is_connect=-1;
-    int tryNumber=5;
-    while(tryNumber!= 0 ){
+    int is_connect = -1;
+    int tryNumber = 5;
+    while (tryNumber != 0) {
         is_connect = connect(this->clientSocket,
-                            (struct sockaddr *) &address, sizeof(address));
+                             (struct sockaddr *) &address, sizeof(address));
         if (is_connect != -1) {
             std::cout << "Client is now connected to server" << endl;
             break;
-        }else{
+        } else {
             usleep(5000);
             tryNumber--;
         }
     }
-
 
 
     return 1;
@@ -49,15 +47,35 @@ int Client::sendMessage(const char *msg) {
 }
 
 void Client::runningClientThread(Client &client) {
-    int sent = 0;
-    while(client.getClientSocket() == -1){
+
+    while (client.getClientSocket() == -1) {
         sleep(1);
     }
-    while (client.getClientSocket() != -1) {
-        //  TODO send msg to server
+    client.turnOnRunningMode();
+    while (client.getIsRunning()) {
 
+        while ( !SymbolTable::Instance()->isQueueEmpty()) {
+            string str= SymbolTable::Instance()->getLastMessage();
+            char message[str.size()+1];
+            strcpy(message,str.c_str());
+
+            int is_sent = send(client.getClientSocket()
+                    , message ,strlen(message) , 0 );
+
+            if (is_sent == -1) {
+                std::cout<<"Error changing value"<<std::endl;
+            }
+        }
         usleep(5000);
     }
 
     close(client.getClientSocket());
+}
+
+void Client::turnOffRunningMode() {
+    isRunning=false;
+}
+
+void Client::turnOnRunningMode() {
+    isRunning=true;
 }

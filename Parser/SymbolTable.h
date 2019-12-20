@@ -24,27 +24,40 @@ private:
     ~SymbolTable() = default;
 
     static SymbolTable *mInstance;
+
     map<string, Variable> symT;
 
     vector<string> nodesFromSim =
             xmlReader::readXmlFile(XML_FILE_NAME);
+
     map<string, double> simMap;
+
+    queue<string> messageForClient;
 
     mutex simMapLock;
     mutex symTLock;
+    mutex queueLock;
 
 public:
     static SymbolTable *Instance();
 
     void updateSymbolTable();
 
-    Variable* getVarFromMap(const string &key);
+    Variable getVarFromMap(const string &key);
 
     bool isInMap(const string &key);
 
     void updateSimMap(vector<double> values);
 
-    void addVariableToSymTMap(Variable &v);
+    void updateVarToSymTMap(Variable &v);
+
+    bool isQueueEmpty();
+
+    string getLastMessage();
+
+    void insertMessageToQueue(string simPath, double value);
+
+
 };
 
 

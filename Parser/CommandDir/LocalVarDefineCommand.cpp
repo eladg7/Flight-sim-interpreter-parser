@@ -12,5 +12,5 @@ void LocalVarDefineCommand::init(vector<string> &origLexer, int index) {
 
 void LocalVarDefineCommand::execute() {
     Variable variable(name,value,Local,"");
-    SymbolTable::Instance()->addVariableToSymTMap(variable);
+    SymbolTable::Instance()->updateVarToSymTMap(variable);
 }

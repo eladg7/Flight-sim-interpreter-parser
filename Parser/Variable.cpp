@@ -48,5 +48,5 @@ Variable &Variable::operator--(int) {
 }
 
 double Variable::calculate() {
-    return this->value;
+    return this->getValue();
 }

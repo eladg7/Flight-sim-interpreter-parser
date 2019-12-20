@@ -63,8 +63,9 @@ void Server::runningServerThread(Server &server) {
     || server.getSocketFD() == -1) {
         sleep(1);
     }
+    server.turnOnRunningMode();
 
-    while (server.getSocketFD() != -1) {
+    while (server.getIsRunning()) {
         isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
         if (isRead < 0) {
             cerr << "Cannot read from server" << endl;
@@ -87,5 +88,13 @@ vector<double> Server::valuesInDouble(char *buffer) {
     }
 
     return valuesInDouble;
+}
+
+void Server::turnOffRunningMode() {
+    isRunning= false;
+}
+
+void Server::turnOnRunningMode() {
+    isRunning= true;
 }
 
