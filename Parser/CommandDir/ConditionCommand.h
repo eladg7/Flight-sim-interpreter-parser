@@ -9,7 +9,7 @@ using namespace std;
 
 class ConditionCommand : public Command {
 protected:
-    BooleanOperator *condition;
+    BooleanOperator *condition = nullptr;
     vector<string> scope;
 private:
     void updateParam(string &);
@@ -22,7 +22,7 @@ public:
     virtual void execute() = 0;
 
     virtual ~ConditionCommand() {
-        if (this->condition) {
+        if (this->condition != nullptr) {
             delete this->condition;
         }
     }
