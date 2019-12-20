@@ -60,7 +60,7 @@ std::string &trim(std::string &str, const std::string &chars = "\t\n\v\f\r ") {
     return ltrim(rtrim(str, chars), chars);
 }
 
- bool Lexer::isCharInString(const string &str, char c) {
+bool Lexer::isCharInString(const string &str, char c) {
     return (strchr(str.c_str(), c));
 }
 
@@ -105,17 +105,17 @@ vector<string> Lexer::splitByFirstChar(const string &str, char c) {
 
 void Lexer::insertToLexer(vector<string> *lexer, const vector<string> &buffer) {
     //insert all words to Lexer
-    for ( string str:buffer) {
+    for (string str:buffer) {
         if (isCharInString(str, '(')) {
             vector<string> splitByParenthesis =
                     methodsOpenParethesis(str);
-            for ( string word:splitByParenthesis) {
+            for (string word:splitByParenthesis) {
                 eraseAllSubStr(word, "\t");
-                lexer->push_back(word);
+                lexer->push_back(trim(word));
             }
         } else {
             eraseAllSubStr(str, "\t");
-            lexer->push_back(str);
+            lexer->push_back(trim(str));
         }
     }
 }
@@ -134,7 +134,7 @@ vector<string> *Lexer::getLexer(char *fileName) {
             lexer->push_back(condition.at(1));
 
         } else if (isCharInString(line, '=')) { //equal lines
-            if (line.find("Var") == string::npos) { // there isn't a Var x =...
+            if (line.find("var") == string::npos) { // there isn't a Var x =...
                 vector<string> equal = split(line, '=');
                 lexer->push_back("=");
                 lexer->push_back(trim(equal.at(0)));

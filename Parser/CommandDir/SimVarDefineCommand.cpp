@@ -20,5 +20,5 @@ void SimVarDefineCommand::init(vector<string> &origLexer, int index) {
 
 void SimVarDefineCommand::execute() {
     Variable v(name,0,inter,simPath);
-    SymbolTable::Instance()->addVariableToSymTMap(v);
+    SymbolTable::Instance()->updateVarToSymTMap(v);
 }

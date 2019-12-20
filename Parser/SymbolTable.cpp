@@ -17,19 +17,19 @@ SymbolTable *SymbolTable::Instance() {
 
 void SymbolTable::updateSymbolTable() {
     symTLock.lock();
-    map<string,Variable> tempSymTMap=symT;
+    map<string, Variable> tempSymTMap = symT;
     symTLock.unlock();
 
     simMapLock.lock();
-    map<string,double> tempSimMap=simMap;
+    map<string, double> tempSimMap = simMap;
     simMapLock.unlock();
 
     for (map<string, Variable>::iterator it = tempSymTMap.begin();
-    it != tempSymTMap.end(); ++it) {
+         it != tempSymTMap.end(); ++it) {
         if (it->second.getInteraction() == FromSim) { // <- from sim to
-            string simPath=it->second.getSim();
+            string simPath = it->second.getSim();
             if (tempSimMap.find(simPath) != tempSimMap.end()) {
-                double newValue=tempSimMap[it->second.getSim()];
+                double newValue = tempSimMap[it->second.getSim()];
 
                 symTLock.lock();
                 symT[it->first].setValue(newValue);
@@ -56,14 +56,14 @@ bool SymbolTable::isInMap(const string &key) {
 void SymbolTable::updateSimMap(vector<double> values) {
     int valuesIndex = 0;
     for (const string &key:nodesFromSim) {
-        if(valuesIndex < values.size()){
+        if (valuesIndex < values.size()) {
             simMapLock.lock();
             simMap[key] = values.at(valuesIndex);
             simMapLock.unlock();
 
-        }else{
+        } else {
             simMapLock.lock();
-            simMap[key]=0;
+            simMap[key] = 0;
             simMapLock.unlock();
 
         }
@@ -73,16 +73,39 @@ void SymbolTable::updateSimMap(vector<double> values) {
 
 }
 
-Variable* SymbolTable::getVarFromMap(const string &key) {
+Variable SymbolTable::getVarFromMap(const string &key) {
     symTLock.lock();
-    Variable* var = &symT[key];
-
+    Variable var = symT[key];
     symTLock.unlock();
+
     return var;
 }
 
-void SymbolTable::addVariableToSymTMap(Variable &v) {
+void SymbolTable::updateVarToSymTMap(Variable &v) {
     symTLock.lock();
-    symT[v.getName()]=v;
+    symT[v.getName()] = v;
     symTLock.unlock();
+}
+
+bool SymbolTable::isQueueEmpty() {
+    queueLock.lock();
+    bool empty = messageForClient.empty();
+    queueLock.unlock();
+    return empty;
+}
+
+string SymbolTable::getLastMessage() {
+    queueLock.lock();
+    string message=messageForClient.front();
+    messageForClient.pop();
+    queueLock.unlock();
+    return message;
+
+}
+
+void SymbolTable::insertMessageToQueue(string simPath, double value) {
+    string message="set "+simPath +" "+ to_string(value);
+    queueLock.lock();
+    messageForClient.push(message);
+    queueLock.unlock();
 }

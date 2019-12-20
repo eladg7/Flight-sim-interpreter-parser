@@ -132,9 +132,10 @@ public:
 
 static double getDoubleFromExpression(string parm) {
     Interpreter interpreter;
+    Lexer::eraseAllSubStr(parm," ");
     Expression *e = interpreter.interpret(parm);
     double value = e->calculate();
-    delete (e);
+    delete e;
     return value;
 }
 

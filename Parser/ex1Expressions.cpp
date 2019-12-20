@@ -170,7 +170,7 @@ Expression *Interpreter::interpret(const string &exp) {
             }
         }
     }
-    if (expressionStack.size() > 1) {
+    if (expressionStack.size() > 1 || expressionStack.empty()) {
         throw "Missing expressions.";
     }
     return expressionStack.top();
@@ -178,7 +178,8 @@ Expression *Interpreter::interpret(const string &exp) {
 
 
 Variable *Interpreter::getVariableFromMap(const string &key) {
-    return SymbolTable::Instance()->getVarFromMap(key);
+    Variable v = SymbolTable::Instance()->getVarFromMap(key);
+    return new Variable(v.getName(),v.getValue(),v.getInteraction(),v.getSim());
 }
 
 
@@ -243,10 +244,12 @@ queue<string> Interpreter::getReversePolish(const string &str) {
             }
         }
         strcpy(last, token);
-    }
+    } //stopped reading.
+
     if (countOpenParenthesis > 0) {//more open than closed Parenthesis.
         throw "There is more open parenthesis then closed ones.";
     }
+
     if (!numberVector.empty()) {
         // finished reading number from string
         char number[10] = {0};
@@ -260,12 +263,26 @@ queue<string> Interpreter::getReversePolish(const string &str) {
         numberVector.clear();
     }
 
+    if(! variableVector.empty()){ //finished reading variable
+        char var[30] = {0};
+        strncpy(var, &variableVector[0], variableVector.size());
+        if (isVariable(var)) {
+            outputQueue.push(var);
+        } else {
+            strcpy(this->excep, "Not a variable: ");
+            strcat(this->excep, var);
+            throw this->excep;
+        }
+        variableVector.clear();
+    }
+
     while (!operatorStack.empty()) {
         outputQueue.push(operatorStack.top());
         operatorStack.pop();
     }
     return outputQueue;
 }
+
 
 void Interpreter::operatorTokenCase(stack<string> &operatorStack, queue<string> &outputQueue, char *token, int loopNum,
                                     char *lastToken) {

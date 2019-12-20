@@ -11,6 +11,12 @@ void PrintCommand::execute() {
     if(Lexer::isCharInString(msg, '"')){
         Lexer::eraseAllSubStr(msg,"\"");
     }
+
+    if(msg == "Done"){
+        client->turnOffRunningMode();
+        server->turnOffRunningMode();
+    }
+
     if (!msg.empty()) {
         cout << msg << endl;
     }

@@ -24,6 +24,7 @@ private:
     int socketFD ;
     sockaddr_in address{};
     int clientSoc;
+    bool isRunning=false;
 
 public:
     Server(){
@@ -59,6 +60,12 @@ public:
     static vector<double> valuesInDouble(char *buffer);
 
     static void runningServerThread(Server &server);
+
+    void turnOffRunningMode();
+    void turnOnRunningMode();
+    bool getIsRunning(){return isRunning;}
+
+
 
 
 };
