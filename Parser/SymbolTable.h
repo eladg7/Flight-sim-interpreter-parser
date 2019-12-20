@@ -30,7 +30,8 @@ private:
             xmlReader::readXmlFile(XML_FILE_NAME);
     map<string, double> simMap;
 
-    mutex mutex_lock;
+    mutex simMapLock;
+    mutex symTLock;
 
 public:
     static SymbolTable *Instance();
@@ -39,10 +40,11 @@ public:
 
     Variable* getVarFromMap(const string &key);
 
-
     bool isInMap(const string &key);
 
     void updateSimMap(vector<double> values);
+
+    void addVariableToSymTMap(Variable &v);
 };
 
 

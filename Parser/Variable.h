@@ -14,25 +14,29 @@ enum Interaction {
 };
 
 class Variable : public Expression {
+private:
     string name;
     double value;
-    Interaction inter=Local;
-    string sim="";
+    Interaction inter = Local;
+    string simPath = "";
 
 public:
-    Variable(){}
+    Variable() {}
+
     Variable(const string &s, double val);
 
     Variable(const string &s, double val,
-             string interaction, const string &simString);
+             Interaction interaction, const string &simString);
 
     Interaction getInteraction() { return inter; }
 
-    string getSim() { return sim; }
+    string getSim() { return simPath; }
+
+    double getValue() { return value; }
+
+    string getName(){return name;}
 
     void setValue(double v) { value = v; }
-
-    double getValue(){return value;}
 
     Variable &operator++();
 
@@ -48,7 +52,7 @@ public:
 
     double calculate() override;
 
-    ~Variable(){}
+    ~Variable() {}
 
 };
 

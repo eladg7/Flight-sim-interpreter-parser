@@ -4,22 +4,17 @@
 
 #include "Variable.h"
 
-Variable::Variable(const string &s, double val){
+Variable::Variable(const string &s, double val) {
     name = s;
     value = val;
 }
+
 Variable::Variable(const string &s, double val,
-                   string interaction, const string &simString) {
+                   Interaction interaction, const string &simString) {
     name = s;
     value = val;
-    if (interaction == "<-") {
-        inter = FromSim;
-    } else if (interaction == "->") {
-        inter = ToSim;
-    } else {
-        inter = Local;
-    }
-    sim = simString;
+    inter = interaction;
+    simPath = simString;
 }
 
 Variable &Variable::operator+=(const double num) {

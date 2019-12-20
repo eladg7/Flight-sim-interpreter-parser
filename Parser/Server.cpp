@@ -56,7 +56,7 @@ int Server::acceptClients() {
 
 void Server::runningServerThread(Server &server) {
 
-    char buffer[264]={0};
+    char buffer[512]={0};
     int isRead = 0;
 
     while (server.getClientSoc() == -1

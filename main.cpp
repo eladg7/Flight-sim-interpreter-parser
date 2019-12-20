@@ -3,9 +3,9 @@
 #include "Parser/Parser.h"
 #include "Parser/Client.h"
 #include "Parser/CommandDir/ConnectClientCommand.h"
-#include "Parser/CommandDir/FuncCommand.h"
 #include "Parser/CommandDir/PrintCommand.h"
 #include "Parser/CommandDir/SleepCommand.h"
+#include "Parser/CommandDir/VarDefineCommand.h"
 
 int main() {
     char filename[1024] = {0};
@@ -16,17 +16,20 @@ int main() {
 
     Server server;
     OpenServerCommand serverCommand(server);
-    mapCommand.insert(pair<string, Command *>("openDataServer", &serverCommand));
+    mapCommand["openDataServer"]= &serverCommand;
 
     Client client;
     ConnectClientCommand clientCommand(client);
-    mapCommand.insert(pair<string, Command *>("connectControlClient", &clientCommand));
+    mapCommand["connectControlClient"]= &clientCommand;
+
+    VarDefineCommand varDefineCommand;
+    mapCommand["var"]=&varDefineCommand;
 
     PrintCommand printCommand;
-    mapCommand.insert(pair<string, Command *>("Print", &printCommand));
+    mapCommand["Print"]= &printCommand;
 
     SleepCommand sleepCommand;
-    mapCommand.insert(pair<string, Command *>("Sleep", &sleepCommand));
+    mapCommand["Sleep"]= &sleepCommand;
 
     thread serverTh(Server::runningServerThread, ref(server));
     thread clientTh(Client::runningClientThread, ref(client));

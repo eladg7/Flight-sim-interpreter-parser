@@ -16,10 +16,25 @@ SymbolTable *SymbolTable::Instance() {
 
 
 void SymbolTable::updateSymbolTable() {
-    for (map<string, Variable>::iterator it = symT.begin(); it != symT.end(); ++it) {
+    symTLock.lock();
+    map<string,Variable> tempSymTMap=symT;
+    symTLock.unlock();
+
+    simMapLock.lock();
+    map<string,double> tempSimMap=simMap;
+    simMapLock.unlock();
+
+    for (map<string, Variable>::iterator it = tempSymTMap.begin();
+    it != tempSymTMap.end(); ++it) {
         if (it->second.getInteraction() == FromSim) { // <-
-            if (simMap.find(it->second.getSim()) != simMap.end()) {
-                it->second.setValue(simMap[it->second.getSim()]);
+            string simPath=it->second.getSim();
+            if (tempSimMap.find(simPath) != tempSimMap.end()) {
+                double newValue=tempSimMap[it->second.getSim()];
+
+                symTLock.lock();
+                symT[it->first].setValue(newValue);
+                symTLock.unlock();
+
             } else {
                 cout << "Couldn't find key in simMap" << endl;
             }
@@ -28,32 +43,46 @@ void SymbolTable::updateSymbolTable() {
 }
 
 bool SymbolTable::isInMap(const string &key) {
-    mutex_lock.lock();
+    symTLock.lock();
     bool isIn = true;
     if (symT.find(key) == symT.end()) {
         isIn = false;
     }
-    mutex_lock.unlock();
+    symTLock.unlock();
     return isIn;
 }
 
 
 void SymbolTable::updateSimMap(vector<double> values) {
-    mutex_lock.lock();
     int valuesIndex = 0;
     for (const string &key:nodesFromSim) {
-        simMap[key] = values.at(valuesIndex);
+        if(valuesIndex < values.size()){
+            simMapLock.lock();
+            simMap[key] = values.at(valuesIndex);
+            simMapLock.unlock();
+
+        }else{
+            simMapLock.lock();
+            simMap[key]=0;
+            simMapLock.unlock();
+
+        }
         valuesIndex++;
     }
     updateSymbolTable();
 
-    mutex_lock.unlock();
 }
 
 Variable* SymbolTable::getVarFromMap(const string &key) {
-    mutex_lock.lock();
+    symTLock.lock();
     Variable* var = &symT[key];
 
-    mutex_lock.unlock();
+    symTLock.unlock();
     return var;
+}
+
+void SymbolTable::addVariableToSymTMap(Variable &v) {
+    symTLock.lock();
+    symT[v.getName()]=v;
+    symTLock.unlock();
 }
