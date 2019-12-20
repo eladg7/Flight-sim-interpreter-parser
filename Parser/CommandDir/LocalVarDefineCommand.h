@@ -1,7 +1,3 @@
-//
-// Created by yekaterina on 20/12/2019.
-//
-
 #ifndef FLIGHT_SIM1_LOCALVARDEFINECOMMAND_H
 #define FLIGHT_SIM1_LOCALVARDEFINECOMMAND_H
 
