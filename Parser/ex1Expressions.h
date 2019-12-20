@@ -223,6 +223,7 @@ static BooleanOperator *getBooleanOperator(string expression, Expression *left, 
 
 static double getDoubleFromExpression(string parm) {
     Interpreter interpreter;
+    Lexer::eraseAllSubStr(parm," ");
     double value = 0;
     vector<string> operatorArguments = isBooleanOperator(parm);
     if (operatorArguments.size() > 1) {
@@ -231,11 +232,11 @@ static double getDoubleFromExpression(string parm) {
         Expression *right = interpreter.interpret(operatorArguments.at(1));
         BooleanOperator *op = getBooleanOperator(parm, left, right);
         value = op->calculate();
-        delete (op);
+        delete op;
     } else {
         Expression *e = interpreter.interpret(parm);
         value = e->calculate();
-        delete (e);
+        delete e;
     }
     return value;
 }

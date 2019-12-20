@@ -22,7 +22,15 @@ private:
     int port = 0;
 
     char ip[64] = {0};
+    bool isRunning=false;
 public:
+
+    void turnOffRunningMode();
+
+    void turnOnRunningMode();
+
+    bool getIsRunning(){return isRunning;}
+
     int openSocket();
 
     int connectClient();
@@ -46,6 +54,7 @@ public:
     void closeClientSocket() {
         this->clientSocket = -1;
     }
+
 };
 
 #endif //FLIGHT_SIM1_CLIENT_H
