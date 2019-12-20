@@ -26,7 +26,7 @@ void SymbolTable::updateSymbolTable() {
 
     for (map<string, Variable>::iterator it = tempSymTMap.begin();
     it != tempSymTMap.end(); ++it) {
-        if (it->second.getInteraction() == FromSim) { // <-
+        if (it->second.getInteraction() == FromSim) { // <- from sim to
             string simPath=it->second.getSim();
             if (tempSimMap.find(simPath) != tempSimMap.end()) {
                 double newValue=tempSimMap[it->second.getSim()];
