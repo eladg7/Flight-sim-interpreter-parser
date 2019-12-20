@@ -6,9 +6,12 @@
 #define FLIGHT_SIM1_IFCONDITIONCOMMAND_H
 
 #include "ConditionCommand.h"
+#include "../Parser.h"
 
 class IfConditionCommand : public ConditionCommand {
 public:
+    explicit IfConditionCommand(map<string, Command *> *mapCommand) : ConditionCommand(mapCommand) {}
+
     virtual void execute();
 };
 

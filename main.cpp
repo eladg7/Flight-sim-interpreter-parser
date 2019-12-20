@@ -37,7 +37,7 @@ int main() {
     SleepCommand sleepCommand;
     mapCommand["Sleep"] = &sleepCommand;
 
-    IfConditionCommand ifConditionCommand;
+    IfConditionCommand ifConditionCommand(&mapCommand);
     mapCommand["if"] = &ifConditionCommand;
 //    ConditionCommand conditionCommand;
 //    mapCommand["while"] = &conditionCommand;

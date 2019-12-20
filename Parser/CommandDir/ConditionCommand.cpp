@@ -44,9 +44,15 @@ void ConditionCommand::initConditionAndScope() {
 }
 
 void ConditionCommand::updateParam(string &parm) {
-    if (Lexer::isCharInString(parm, '"')) {
-        Lexer::eraseAllSubStr(parm, "\"");
-    } else {
-        parm = to_string(getDoubleFromExpression(parm));
-    }
+//    if (Lexer::isCharInString(parm, '"')) {
+//        Lexer::eraseAllSubStr(parm, "\"");
+//    } else {
+        try {
+            string temp = to_string(getDoubleFromExpression(parm));
+            parm = temp;
+        } catch (...) {
+            //  it's a funcCommand (i.e. Print Sleep...)
+
+        }
+//    }
 }
