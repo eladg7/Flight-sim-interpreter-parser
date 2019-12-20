@@ -1,9 +1,18 @@
 #include "ConditionCommand.h"
 
 void ConditionCommand::init(vector<string> &origLexer, int index) {
+    bool firstRun = true;
     int loopLimit = origLexer.size() - index;
     for (int i = 1; i < loopLimit; i++) {
         string parm = origLexer.at(index + i);
+        if (firstRun) {
+            if (Lexer::isCharInString(parm, '{')) {
+                Lexer::eraseAllSubStr(parm, "{");
+            }
+            commandLexer.push_back(parm);
+            firstRun = false;
+            continue;
+        }
         if (parm == "}" || (parm.find("}") != std::string::npos)) {
             this->numberOfParameters = i - 1;
             if (parm.length() > 1) {
@@ -21,9 +30,9 @@ void ConditionCommand::init(vector<string> &origLexer, int index) {
     initConditionAndScope();
 }
 
-void ConditionCommand::initConditionAndScope() throw(invalid_argument) {
+void ConditionCommand::initConditionAndScope() {
     if (commandLexer.size() > 0) {
-        this->condition = commandLexer.at(0);
+        this->condition = getBooleanCondition(commandLexer.at(0));
     } else {
         throw invalid_argument("Invalid condition argument - there's no condition");
     }

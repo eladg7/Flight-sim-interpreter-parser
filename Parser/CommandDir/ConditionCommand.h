@@ -9,19 +9,23 @@ using namespace std;
 
 class ConditionCommand : public Command {
 protected:
-    string condition;
+    BooleanOperator *condition;
     vector<string> scope;
 private:
     void updateParam(string &);
 
-    void initConditionAndScope() throw(invalid_argument);
+    void initConditionAndScope();
 
 public:
     virtual void init(vector<string> &origLexer, int index);
 
     virtual void execute() = 0;
 
-    virtual ~ConditionCommand() {}
+    virtual ~ConditionCommand() {
+        if (this->condition) {
+            delete this->condition;
+        }
+    }
 };
 
 #endif //FLIGHT_SIM1_CONDITIONCOMMAND_H
