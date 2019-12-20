@@ -221,23 +221,28 @@ static BooleanOperator *getBooleanOperator(string expression, Expression *left, 
     return booleanOperator;
 }
 
+static BooleanOperator *getBooleanCondition(string parm) {
+    Interpreter interpreter;
+    Lexer::eraseAllSubStr(parm, " ");
+    vector<string> operatorArguments = isBooleanOperator(parm);
+    //  this means it's a boolean operator
+    Expression *left = interpreter.interpret(operatorArguments.at(0));
+    Expression *right = interpreter.interpret(operatorArguments.at(1));
+    BooleanOperator *op = getBooleanOperator(parm, left, right);
+    return op;
+}
+
+static bool evaluateBooleanOperator(BooleanOperator *booleanOperator) {
+    return (booleanOperator->calculate());
+}
+
 static double getDoubleFromExpression(string parm) {
     Interpreter interpreter;
-    Lexer::eraseAllSubStr(parm," ");
-    double value = 0;
-    vector<string> operatorArguments = isBooleanOperator(parm);
-    if (operatorArguments.size() > 1) {
-        //  this means it's a boolean operator
-        Expression *left = interpreter.interpret(operatorArguments.at(0));
-        Expression *right = interpreter.interpret(operatorArguments.at(1));
-        BooleanOperator *op = getBooleanOperator(parm, left, right);
-        value = op->calculate();
-        delete op;
-    } else {
-        Expression *e = interpreter.interpret(parm);
-        value = e->calculate();
-        delete e;
-    }
+    Lexer::eraseAllSubStr(parm, " ");
+    Expression *e = interpreter.interpret(parm);
+    double value = e->calculate();
+    delete e;
+
     return value;
 }
 

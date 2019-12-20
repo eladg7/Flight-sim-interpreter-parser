@@ -8,6 +8,7 @@
 #include "Parser/CommandDir/VarDefineCommand.h"
 #include "Parser/CommandDir/ConditionCommand.h"
 #include "Parser/CommandDir/UpdateVarCommand.h"
+#include "Parser/CommandDir/IfConditionCommand.h"
 
 int main() {
     char filename[1024] = {0};
@@ -28,20 +29,22 @@ int main() {
     mapCommand["var"] = &varDefineCommand;
 
     UpdateVarCommand updateVarCommand;
-    mapCommand["="]=&updateVarCommand;
+    mapCommand["="] = &updateVarCommand;
 
-    PrintCommand printCommand(server,client);
-    mapCommand["Print"]= &printCommand;
+    PrintCommand printCommand(server, client);
+    mapCommand["Print"] = &printCommand;
 
     SleepCommand sleepCommand;
     mapCommand["Sleep"] = &sleepCommand;
 
+    IfConditionCommand ifConditionCommand;
+    mapCommand["if"] = &ifConditionCommand;
 //    ConditionCommand conditionCommand;
 //    mapCommand["while"] = &conditionCommand;
 
 
     thread serverTh(Server::runningServerThread, ref(server));
-    thread clientTh(Client::runningClientThread,ref(client));
+    thread clientTh(Client::runningClientThread, ref(client));
 
     Parser parser(mapCommand);
     parser.parse(*lexer);
