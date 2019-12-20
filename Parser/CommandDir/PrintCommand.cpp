@@ -12,7 +12,7 @@ void PrintCommand::execute() {
         Lexer::eraseAllSubStr(msg,"\"");
     }
 
-    if(msg == "Done"){
+    if(msg == "done"){
         client->turnOffRunningMode();
         server->turnOffRunningMode();
     }
