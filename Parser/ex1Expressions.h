@@ -225,7 +225,6 @@ static BooleanOperator *getBooleanCondition(string parm) {
     Interpreter interpreter;
     Lexer::eraseAllSubStr(parm, " ");
     vector<string> operatorArguments = isBooleanOperator(parm);
-    //  this means it's a boolean operator
     Expression *left = interpreter.interpret(operatorArguments.at(0));
     Expression *right = interpreter.interpret(operatorArguments.at(1));
     BooleanOperator *op = getBooleanOperator(parm, left, right);

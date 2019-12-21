@@ -16,6 +16,8 @@ protected:
 
     vector<string> scope;
 
+    void updateCondition();
+
 private:
     void updateParam(string &);
 

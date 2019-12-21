@@ -1,4 +1,5 @@
 #include "ConditionCommand.h"
+#include "../ex1Expressions.h"
 
 void ConditionCommand::init(vector<string> &origLexer, int index) {
     bool firstRun = true;
@@ -9,6 +10,7 @@ void ConditionCommand::init(vector<string> &origLexer, int index) {
             if (Lexer::isCharInString(parm, '{')) {
                 Lexer::eraseAllSubStr(parm, "{");
             }
+            Lexer::eraseAllSubStr(parm, " ");
             commandLexer.push_back(parm);
             firstRun = false;
             continue;
@@ -30,6 +32,10 @@ void ConditionCommand::init(vector<string> &origLexer, int index) {
     initConditionAndScope();
 }
 
+void ConditionCommand::updateCondition() {
+    this->condition = getBooleanCondition(commandLexer.at(0));
+}
+
 void ConditionCommand::initConditionAndScope() {
     if (commandLexer.size() > 0) {
         this->condition = getBooleanCondition(commandLexer.at(0));
@@ -47,12 +53,12 @@ void ConditionCommand::updateParam(string &parm) {
 //    if (Lexer::isCharInString(parm, '"')) {
 //        Lexer::eraseAllSubStr(parm, "\"");
 //    } else {
-        try {
-            string temp = to_string(getDoubleFromExpression(parm));
-            parm = temp;
-        } catch (...) {
-            //  it's a funcCommand (i.e. Print Sleep...)
+    try {
+        string temp = to_string(getDoubleFromExpression(parm));
+        parm = temp;
+    } catch (...) {
+        //  it's a funcCommand (i.e. Print Sleep...)
 
-        }
+    }
 //    }
 }
