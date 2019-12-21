@@ -11,6 +11,7 @@
 #include "Variable.h"
 #include "SymbolTable.h"
 #include "Expression.h"
+#include <math.h>
 
 using namespace std;
 

@@ -7,11 +7,9 @@ void FuncCommand::init(vector<string> &origLexer, int index) {
     commandLexer.clear();
     for (int i = 1; i <= numberOfParameters; i++) {
         string parm = origLexer.at(index + i);
-        if (Lexer::isCharInString(parm, '"')) {
-            Lexer::eraseAllSubStr(parm, "\"");
-        } else {
-            parm = to_string(getDoubleFromExpression(parm));
-        }
+//        if (Lexer::isCharInString(parm, '"')) {
+//            Lexer::eraseAllSubStr(parm, "\"");
+//        }
         commandLexer.push_back(parm);
     }
 }

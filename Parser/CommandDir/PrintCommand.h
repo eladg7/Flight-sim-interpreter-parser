@@ -7,15 +7,19 @@
 #include <iostream>
 
 using namespace std;
+
 class PrintCommand : public FuncCommand {
 private:
     Server *server;
     Client *client;
+
+    string updateArgument();
+
 public:
-    PrintCommand(Server &s,Client &c) {
+    PrintCommand(Server &s, Client &c) {
         numberOfParameters = 1;
-        server=&s;
-        client=&c;
+        server = &s;
+        client = &c;
     }
 
     virtual void execute();
