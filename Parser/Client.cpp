@@ -1,4 +1,3 @@
-#include <queue>
 #include "Client.h"
 #include "SymbolTable.h"
 
@@ -8,19 +7,20 @@ int Client::openSocket() {
         cerr << "Could not create a socket" << endl;
         return -1;
     }
+    return 0;
 }
 
 int Client::connectClient() {
     //We need to create a sockaddr obj to hold address of server
     sockaddr_in address; //in means IP4
     address.sin_family = AF_INET;//IP4
-    address.sin_addr.s_addr = inet_addr(this->ip);  //the localhost address
-    address.sin_port = htons(this->port);
+    address.sin_addr.s_addr = inet_addr(ip);  //the localhost address
+    address.sin_port = htons(port);
 
-    int is_connect = -1;
+    int is_connect ;
     int tryNumber = 5;
     while (tryNumber != 0) {
-        is_connect = connect(this->clientSocket,
+        is_connect = connect(clientSocket,
                              (struct sockaddr *) &address, sizeof(address));
         if (is_connect != -1) {
             std::cout << "Client is now connected to server" << endl;
@@ -30,19 +30,6 @@ int Client::connectClient() {
             tryNumber--;
         }
     }
-
-
-    return 1;
-}
-
-int Client::sendMessage(const char *msg) {
-    int sent = send(this->clientSocket, msg, strlen(msg), 0);
-    if (sent == -1) {
-        std::cout << "Error sending message" << endl;
-    } else {
-        std::cout << "sent: " << msg << endl;
-    }
-
     return 1;
 }
 
@@ -54,17 +41,16 @@ void Client::runningClientThread(Client &client) {
     client.turnOnRunningMode();
     while (client.getIsRunning()) {
 
-        while ( !SymbolTable::Instance()->isQueueEmpty()) {
+        while (!SymbolTable::Instance()->isQueueEmpty()) {
             string str= SymbolTable::Instance()->getLastMessage();
-            char message[str.size()+1];
-            strcpy(message,str.c_str());
-
-            int is_sent = send(client.getClientSocket()
-                    , message ,strlen(message) , 0 );
+            int socket = client.getClientSocket();
+            int is_sent = send(
+                    socket, str.c_str(), str.size() , 0);
 
             if (is_sent == -1) {
-                std::cout<<"Error changing value"<<std::endl;
+                std::cout << "Error changing value" << std::endl;
             }
+            is_sent = 0;
         }
         usleep(5000);
     }
@@ -73,9 +59,9 @@ void Client::runningClientThread(Client &client) {
 }
 
 void Client::turnOffRunningMode() {
-    isRunning=false;
+    isRunning = false;
 }
 
 void Client::turnOnRunningMode() {
-    isRunning=true;
+    isRunning = true;
 }

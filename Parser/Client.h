@@ -21,7 +21,7 @@ private:
 
     int port = 0;
 
-    char ip[64] = {0};
+    char ip[32] = {0};
     bool isRunning=false;
 public:
 
@@ -35,8 +35,6 @@ public:
 
     int connectClient();
 
-    int sendMessage(const char *msg);
-
     int getClientSocket() {
         return this->clientSocket;
     }
@@ -48,7 +46,7 @@ public:
     }
 
     void setIP(char *x) {
-        strcat(ip, x);
+        strcpy(ip, x);
     }
 
     void closeClientSocket() {
