@@ -249,7 +249,7 @@ Expression *Interpreter::interpret(const string &exp) {
 
 Variable *Interpreter::getVariableFromMap(const string &key) {
     Variable v = SymbolTable::Instance()->getVarFromMap(key);
-    return new Variable(v.getName(),v.getValue(),v.getInteraction(),v.getSim());
+    return new Variable(v.getName(), v.getValue(), v.getInteraction(), v.getSim());
 }
 
 
@@ -333,7 +333,7 @@ queue<string> Interpreter::getReversePolish(const string &str) {
         numberVector.clear();
     }
 
-    if(! variableVector.empty()){ //finished reading variable
+    if (!variableVector.empty()) { //finished reading variable
         char var[30] = {0};
         strncpy(var, &variableVector[0], variableVector.size());
         if (isVariable(var)) {
