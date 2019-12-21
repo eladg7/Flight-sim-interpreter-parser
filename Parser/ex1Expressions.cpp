@@ -114,7 +114,7 @@ GreaterOperator::GreaterOperator(Expression *leftEx, Expression *rightEx) {
 }
 
 double GreaterOperator::calculate() {
-    return left->calculate() > right->calculate();
+    return isgreater(left->calculate(), right->calculate());
 }
 
 GreaterEqualOperator::GreaterEqualOperator(Expression *leftEx, Expression *rightEx) {
@@ -125,7 +125,7 @@ GreaterEqualOperator::GreaterEqualOperator(Expression *leftEx, Expression *right
 double GreaterEqualOperator::calculate() {
     double leftSide = left->calculate();
     double rightSide = right->calculate();
-    return leftSide == rightSide || leftSide > rightSide;
+    return isgreaterequal(leftSide, rightSide);
 }
 
 BelowOperator::BelowOperator(Expression *leftEx, Expression *rightEx) {
@@ -134,7 +134,7 @@ BelowOperator::BelowOperator(Expression *leftEx, Expression *rightEx) {
 }
 
 double BelowOperator::calculate() {
-    return left->calculate() < right->calculate();
+    return isless(left->calculate(), right->calculate());
 }
 
 BelowEqualOperator::BelowEqualOperator(Expression *leftEx, Expression *rightEx) {
@@ -145,7 +145,7 @@ BelowEqualOperator::BelowEqualOperator(Expression *leftEx, Expression *rightEx) 
 double BelowEqualOperator::calculate() {
     double leftSide = left->calculate();
     double rightSide = right->calculate();
-    return leftSide == rightSide || leftSide < rightSide;
+    return islessequal(leftSide, rightSide);
 }
 
 EqualOperator::EqualOperator(Expression *leftEx, Expression *rightEx) {
@@ -154,7 +154,9 @@ EqualOperator::EqualOperator(Expression *leftEx, Expression *rightEx) {
 }
 
 double EqualOperator::calculate() {
-    return this->left->calculate() == this->right->calculate();
+    double leftSide = this->left->calculate();
+    double rightSide = this->right->calculate();
+    return isgreaterequal(leftSide, rightSide) && islessequal(leftSide, rightSide);
 }
 
 NotEqualOperator::NotEqualOperator(Expression *leftEx, Expression *rightEx) {
@@ -163,7 +165,9 @@ NotEqualOperator::NotEqualOperator(Expression *leftEx, Expression *rightEx) {
 }
 
 double NotEqualOperator::calculate() {
-    return this->left->calculate() != this->right->calculate();
+    double leftSide = this->left->calculate();
+    double rightSide = this->right->calculate();
+    return isless(leftSide, rightSide) || isless(rightSide, leftSide);
 }
 
 //stackoverflow

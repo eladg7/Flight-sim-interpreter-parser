@@ -20,12 +20,12 @@ void ConditionCommand::init(vector<string> &origLexer, int index) {
             if (parm.length() > 1) {
                 //  remove '}'
                 parm.pop_back();
-                updateParam(parm);
+//                updateParam(parm);
                 commandLexer.push_back(parm);
             }
             break;
         }
-        updateParam(parm);
+//        updateParam(parm);
         commandLexer.push_back(parm);
     }
 
