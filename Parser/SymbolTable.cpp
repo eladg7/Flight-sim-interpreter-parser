@@ -104,7 +104,7 @@ string SymbolTable::getLastMessage() {
 }
 
 void SymbolTable::insertMessageToQueue(string simPath, double value) {
-    string message="set "+simPath +" "+ to_string(value);
+    string message="set "+simPath +" "+ to_string(value)+"\r\n"; // /r/n for telnet
     queueLock.lock();
     messageForClient.push(message);
     queueLock.unlock();
