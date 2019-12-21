@@ -1,5 +1,6 @@
 #include "Server.h"
 
+#define NUMBER_OF_VALUES 400
 int Server::openSocket() {
     socketFD = socket(AF_INET, SOCK_STREAM, 0);
     if (socketFD == -1) {
@@ -56,7 +57,7 @@ int Server::acceptClients() {
 
 void Server::runningServerThread(Server &server) {
 
-    char buffer[512]={0};
+    char buffer[NUMBER_OF_VALUES]={0};
     int isRead = 0;
 
     while (server.getClientSoc() == -1
@@ -80,10 +81,10 @@ void Server::runningServerThread(Server &server) {
     close(server.getSocketFD());
 }
 
-vector<double> Server::valuesInDouble(char *buffer) {
-    vector<double> valuesInDouble;
+vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
+    vector<double> valuesInDouble= {0};
     vector<string> valuesInString = Lexer::split(buffer, ',');
-    for (string val:valuesInString) {
+    for (const string &val:valuesInString) {
         valuesInDouble.push_back(atof(val.c_str()));
     }
 
