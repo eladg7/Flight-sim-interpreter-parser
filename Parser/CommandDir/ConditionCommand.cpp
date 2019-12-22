@@ -2,6 +2,7 @@
 #include "../ex1Expressions.h"
 
 void ConditionCommand::init(vector<string> &origLexer, int index) {
+    commandLexer.clear();
     bool firstRun = true;
     int loopLimit = origLexer.size() - index;
     for (int i = 1; i < loopLimit; i++) {
@@ -33,6 +34,9 @@ void ConditionCommand::init(vector<string> &origLexer, int index) {
 }
 
 void ConditionCommand::updateCondition() {
+    if (this->condition != nullptr) {
+        delete this->condition;
+    }
     this->condition = getBooleanCondition(commandLexer.at(0));
 }
 

@@ -54,7 +54,7 @@ bool SymbolTable::isInMap(const string &key) {
 
 
 void SymbolTable::updateSimMap(vector<double> values) {
-    int valuesIndex = 0;
+    int valuesIndex = 1;
     for (const string &key:nodesFromSim) {
         if (valuesIndex < values.size()) {
             simMapLock.lock();

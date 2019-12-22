@@ -1,12 +1,10 @@
-//
-// Created by elad on 19/12/2019.
-//
-
 #include "SleepCommand.h"
+#include "../ex1Expressions.h"
 
 void SleepCommand::execute() {
     try {
-        int sleepDuration = stoi(commandLexer.at(0));
+        string temp = commandLexer.at(0);
+        int sleepDuration = (int) getDoubleFromExpression(temp);
         std::this_thread::sleep_for(std::chrono::milliseconds(sleepDuration));
     } catch (...) {
         cerr << "Could not parse 'Sleep' duration" << endl;
