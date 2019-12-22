@@ -127,7 +127,7 @@ vector<string> *Lexer::getLexer(char *fileName) {
     vector<string> buffer;
     for (string line:linesInFile) {
         if (line.empty() || line.rfind("//", 0) == 0) {
-            continue; //comment
+            continue; //comment.
         }
         if (isCondition(split(trim(line), ' ').at(0))) { //conditions
             line = trim(line);
