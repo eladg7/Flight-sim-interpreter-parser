@@ -84,7 +84,8 @@ void Server::runningServerThread(Server &server) {
 vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
     vector<double> valuesInDouble;
     vector<string> valuesInString = Lexer::split(buffer, ',');
-    for (const string &val:valuesInString) {
+    valuesInDouble.reserve(valuesInString.size());
+for (const string &val:valuesInString) {
         valuesInDouble.push_back(atof(val.c_str()));
     }
 
