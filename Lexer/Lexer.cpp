@@ -46,6 +46,7 @@ void Lexer::eraseAllSubStr(std::string &mainStr, const std::string &toErase) {
     }
 }
 
+
 std::string &ltrim(std::string &str, const std::string &chars = "\t\n\v\f\r ") {
     str.erase(0, str.find_first_not_of(chars));
     return str;
@@ -124,14 +125,22 @@ vector<string> *Lexer::getLexer(char *fileName) {
     vector<string> linesInFile = getLinesFromFile(fileName);
     auto *lexer = new vector<string>;
     vector<string> buffer;
-    for (const string &line:linesInFile) {
+    for (string line:linesInFile) {
         if (line.empty() || line.rfind("//", 0) == 0) {
-            continue; //comment
+            continue; //comment.
         }
-        if (isCondition(split(line, ' ').at(0))) { //conditions
+        if (isCondition(split(trim(line), ' ').at(0))) { //conditions
+            line = trim(line);
             vector<string> condition = splitByFirstChar(line, ' ');
-            lexer->push_back(condition.at(0));
-            lexer->push_back(condition.at(1));
+            lexer->push_back(trim(condition.at(0)));
+            lexer->push_back(trim(condition.at(1)));
+
+        } else if (line.find("var") != string::npos) { // func
+            vector<string> func = splitByFirstChar(line, '(');
+            lexer->push_back(trim(func.at(0)));
+            string variablesToFunc = func.at(1);
+            Lexer::eraseAllSubStr(variablesToFunc, ")");
+            lexer->push_back(trim(variablesToFunc));
 
         } else if (isCharInString(line, '=')) { //equal lines
             if (line.find("var") == string::npos) { // there isn't a Var x =...
@@ -140,6 +149,7 @@ vector<string> *Lexer::getLexer(char *fileName) {
                 lexer->push_back(trim(equal.at(0)));
                 lexer->push_back(trim(equal.at(1)));
             } else {// var x = ...
+                line = trim(line);
                 buffer = splitByFirstChar(line, ' ');
                 lexer->push_back(buffer.at(0));// var
                 buffer = split(buffer.at(1), '=');
