@@ -3,6 +3,7 @@
 // Server side C/C++ program to demonstrate Socket programming
 
 void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
+    commandLexer.clear();
     for (int i = 1; i <= numberOfParameters; i++) {
         string parm = origLexer.at(index + i);
         if (Lexer::isCharInString(parm, '"')) {
