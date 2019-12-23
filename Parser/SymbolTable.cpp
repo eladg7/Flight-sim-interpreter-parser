@@ -30,9 +30,11 @@ void SymbolTable::updateSymbolTable() {
             string simPath = it->second.getSim();
             if (tempSimMap.find(simPath) != tempSimMap.end()) {
                 double newValue = tempSimMap[it->second.getSim()];
+                string key = it->first;
+                Variable v(key,newValue,FromSim,simPath);
 
                 symTLock.lock();
-                symT[it->first].setValue(newValue);
+                symT[key]=v;
                 symTLock.unlock();
 
             } else {
@@ -96,7 +98,7 @@ bool SymbolTable::isQueueEmpty() {
 
 string SymbolTable::getLastMessage() {
     queueLock.lock();
-    string message=messageForClient.front();
+    string message = messageForClient.front();
     messageForClient.pop();
     queueLock.unlock();
     return message;
@@ -104,7 +106,7 @@ string SymbolTable::getLastMessage() {
 }
 
 void SymbolTable::insertMessageToQueue(string simPath, double value) {
-    string message="set "+simPath +" "+ to_string(value)+"\r\n"; // /r/n for telnet
+    string message = "set " + simPath + " " + to_string(value) + "\r\n"; // /r/n for telnet
     queueLock.lock();
     messageForClient.push(message);
     queueLock.unlock();

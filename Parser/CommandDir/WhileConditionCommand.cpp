@@ -5,7 +5,6 @@ void WhileConditionCommand::execute() {
     while (evaluateBooleanOperator(this->condition)) {
         Parser parser(*this->mapCommand);
         parser.parse(this->commandLexer);
-//        sleep(1);
         updateCondition();
     }
 }
