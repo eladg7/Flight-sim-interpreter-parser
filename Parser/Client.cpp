@@ -49,8 +49,8 @@ void Client::runningClientThread(Client &client) {
 
             if (is_sent == -1) {
                 std::cout << "Error changing value" << std::endl;
+                continue;
             }
-            is_sent = 0;
         }
         usleep(5000);
     }

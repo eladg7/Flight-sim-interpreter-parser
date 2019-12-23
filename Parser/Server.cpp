@@ -68,8 +68,9 @@ void Server::runningServerThread(Server &server) {
 
     while (server.getIsRunning()) {
         isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
-        if (isRead < 0) {
-            cerr << "Cannot read from server" << endl;
+        if (isRead <= 0) {
+            server.turnOffRunningMode();
+            cerr << "Cannot read from simulator" << endl;
             continue;
         }
         vector<double> values = valuesInDouble(buffer);
