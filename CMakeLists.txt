@@ -22,4 +22,6 @@ add_executable(flight_sim1 main.cpp Parser/SymbolTable.cpp Parser/Server.h
         Parser/CommandDir/ConditionCommand.cpp Parser/CommandDir/ConditionCommand.h
         Parser/CommandDir/IfConditionCommand.cpp Parser/CommandDir/IfConditionCommand.h
         Parser/CommandDir/WhileConditionCommand.cpp Parser/CommandDir/WhileConditionCommand.h
-        Parser/CommandDir/UpdateVarCommand.cpp Parser/CommandDir/UpdateVarCommand.h)
+        Parser/CommandDir/UpdateVarCommand.cpp Parser/CommandDir/UpdateVarCommand.h
+        Parser/CommandDir/GenericFunctionCommand.cpp Parser/CommandDir/GenericFunctionCommand.h
+        ProgramRunner/ProgramExecute.cpp ProgramRunner/ProgramExecute.h)

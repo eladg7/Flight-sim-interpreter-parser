@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "Parser.h"
 
 void Parser::parse(vector<string> &lexer) {
@@ -11,9 +10,19 @@ void Parser::parse(vector<string> &lexer) {
             c->init(lexer, index);
             c->execute();
             index += c->getNumberOfParam();
-        }else{
+        } else if ((index + 1 < lexer.size()) && isGenericFunction(lexer.at(index + 1))) {
+            auto *tempCommand = new GenericFunctionCommand(&commandMap);
+            commandMap[word] = tempCommand;
+            tempCommand->init(lexer, index);
+            tempCommand->execute();
+            index += tempCommand->getNumberOfParam();
+        } else {
             index++;
         }
-        usleep(5000);
     }
+    usleep(5000);
+}
+
+bool Parser::isGenericFunction(const string &comm) {
+    return (comm.find("var") != string::npos) && (comm.find('{') != string::npos);
 }
