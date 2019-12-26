@@ -238,10 +238,17 @@ static bool evaluateBooleanOperator(BooleanOperator *booleanOperator) {
 
 static double getDoubleFromExpression(string parm) {
     Interpreter interpreter;
+    double value = 0;
     Lexer::eraseAllSubStr(parm, " ");
-    Expression *e = interpreter.interpret(parm);
-    double value = e->calculate();
-    delete e;
+    try {
+        Expression *e = interpreter.interpret(parm);
+        value = e->calculate();
+        delete e;
+    } catch (const char *&exep) {
+        cout << " Error calculating value of " + parm
+                + " :" + exep << endl;
+    }
+
 
     return value;
 }
