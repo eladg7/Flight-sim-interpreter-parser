@@ -63,7 +63,7 @@ Div::Div(Expression *leftEX, Expression *rightEX) {
 }
 
 double Div::calculate() {
-    if (this->getRight()->calculate() < 0.0001) {
+    if (abs(this->getRight()->calculate()) < 0.0001) {
         throw "Divide by 0";
     }
     return (this->getLeft()->calculate() / this->getRight()->calculate());
