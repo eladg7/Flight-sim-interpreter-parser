@@ -57,7 +57,7 @@ std::string &rtrim(std::string &str, const std::string &chars = "\t\n\v\f\r ") {
     return str;
 }
 
-std::string &trim(std::string &str, const std::string &chars = "\t\n\v\f\r ") {
+std::string &Lexer::trim(std::string &str, const std::string &chars) {
     return ltrim(rtrim(str, chars), chars);
 }
 
@@ -136,7 +136,7 @@ vector<string> *Lexer::getLexer(char *fileName) {
             lexer->push_back(trim(condition.at(1)));
 
         } else if (line.find("var") != string::npos
-        && isCharInString(line,'{')) { // func
+                   && isCharInString(line, '{')) { // func
             vector<string> func = splitByFirstChar(line, '(');
             lexer->push_back(trim(func.at(0)));
             string variablesToFunc = func.at(1);

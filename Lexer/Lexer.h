@@ -18,7 +18,7 @@ using namespace std;
 
 class Lexer {
 public:
-    static vector<string> getLinesFromFile(char* fileName);
+    static vector<string> getLinesFromFile(char *fileName);
 
     static std::vector<std::string> split(basic_string<char> s, char delimiter);
 
@@ -37,6 +37,8 @@ public:
     static vector<string> methodsOpenParethesis(const string &line);
 
     static void eraseAllSubStr(std::string &mainStr, const std::string &toErase);
+
+    static std::string &trim(std::string &str, const std::string &chars = "\t\n\v\f\r ");
 };
 
 #endif //FLIGHT_SIM1_LEXER_H

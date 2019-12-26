@@ -1,6 +1,7 @@
 #include "Server.h"
 
 #define NUMBER_OF_VALUES 400
+
 int Server::openSocket() {
     socketFD = socket(AF_INET, SOCK_STREAM, 0);
     if (socketFD == -1) {
@@ -56,12 +57,10 @@ int Server::acceptClients() {
 }
 
 void Server::runningServerThread(Server &server) {
-
-    char buffer[NUMBER_OF_VALUES]={0};
+    char buffer[NUMBER_OF_VALUES] = {0};
     int isRead = 0;
-
     while (server.getClientSoc() == -1
-    || server.getSocketFD() == -1) {
+           || server.getSocketFD() == -1) {
         sleep(1);
     }
     server.turnOnRunningMode();
@@ -70,8 +69,7 @@ void Server::runningServerThread(Server &server) {
         isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
         if (isRead <= 0) {
             server.turnOffRunningMode();
-            cerr << "Cannot read from simulator" << endl;
-            continue;
+            break;
         }
         vector<double> values = valuesInDouble(buffer);
         SymbolTable::Instance()->updateSimMap(values);
@@ -86,7 +84,7 @@ vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
     vector<double> valuesInDouble;
     vector<string> valuesInString = Lexer::split(buffer, ',');
     valuesInDouble.reserve(valuesInString.size());
-for (const string &val:valuesInString) {
+    for (const string &val:valuesInString) {
         valuesInDouble.push_back(atof(val.c_str()));
     }
 
@@ -94,10 +92,10 @@ for (const string &val:valuesInString) {
 }
 
 void Server::turnOffRunningMode() {
-    isRunning= false;
+    isRunning = false;
 }
 
 void Server::turnOnRunningMode() {
-    isRunning= true;
+    isRunning = true;
 }
 
