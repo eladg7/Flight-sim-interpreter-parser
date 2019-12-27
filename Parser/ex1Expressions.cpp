@@ -181,25 +181,6 @@ std::vector<std::string> split(const std::string &s, char delimiter) {
     return tokens;
 }
 
-//void Interpreter::setVariables(const string &exp) {
-//    vector<string> splitVariables = split(exp, ';');
-//    for (const string &str:splitVariables) {
-//        try {
-//            vector<string> verValue = split(str, '=');
-//            if (!regex_match(verValue.at(0), variableRegex)
-//                || !regex_match(verValue.at(1), doubleNumberRegex)) {
-//                throw "Set variables isn't possible with this string: ";
-//            }
-//            this->VariableAndValue[verValue.at(0)] = stod(verValue.at(1));
-//
-//        } catch (const char *msg) {
-//            strcpy(this->excep, msg);
-//            strcat(this->excep, str.c_str());
-//            throw this->excep;
-//        }
-//    }
-//}
-
 Expression *Interpreter::interpret(const string &exp) {
     queue<string> polish = getReversePolish(exp);
     stack<Expression *> expressionStack;

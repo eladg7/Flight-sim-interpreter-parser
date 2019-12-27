@@ -67,9 +67,9 @@ void Server::runningServerThread(Server &server) {
 
     while (server.getIsRunning()) {
 
-        isRead = recv(server.getClientSoc(), buffer, sizeof(buffer),MSG_NOSIGNAL);
+        isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
         if (isRead <= 0) {
-            cout <<"Turning off server..."<<endl;
+            cout << "Turning off server..." << endl;
             exit(1);
         }
         vector<double> values = valuesInDouble(buffer);
@@ -77,9 +77,9 @@ void Server::runningServerThread(Server &server) {
 
         usleep(5000);
     }
-    if(isRead > 0){
-        close(server.getSocketFD());
-    }
+
+    close(server.getSocketFD());
+
 }
 
 vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
