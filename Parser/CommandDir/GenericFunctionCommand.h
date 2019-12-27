@@ -24,8 +24,8 @@ private:
     void initFunction(vector<string> &origLexer, int index);
 
 public :
-    explicit GenericFunctionCommand(map<string, Command *> *mapCommand) {
-        this->mapCommand = mapCommand;
+    explicit GenericFunctionCommand(map<string, Command *> *map) {
+        this->mapCommand = map;
     }
 
     virtual void init(vector<string> &origLexer, int index);

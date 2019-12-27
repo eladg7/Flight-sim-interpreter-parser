@@ -1,10 +1,9 @@
 #include "ConditionCommand.h"
-#include "../ex1Expressions.h"
 
 void ConditionCommand::init(vector<string> &origLexer, int index) {
     commandLexer.clear();
     bool firstRun = true;
-    int loopLimit = origLexer.size() - index;
+    unsigned int loopLimit = origLexer.size() - index;
     for (int i = 1; i < loopLimit; i++) {
         string parm = origLexer.at(index + i);
         if (firstRun) {
@@ -16,17 +15,15 @@ void ConditionCommand::init(vector<string> &origLexer, int index) {
             firstRun = false;
             continue;
         }
-        if (parm == "}" || (parm.find("}") != std::string::npos)) {
+        if (parm == "}" || (parm.find('}') != std::string::npos)) {
             this->numberOfParameters = i - 1;
             if (parm.length() > 1) {
                 //  remove '}'
                 parm.pop_back();
-//                updateParam(parm);
                 commandLexer.push_back(parm);
             }
             break;
         }
-//        updateParam(parm);
         commandLexer.push_back(parm);
     }
 
@@ -41,7 +38,7 @@ void ConditionCommand::updateCondition() {
 }
 
 void ConditionCommand::initConditionAndScope() {
-    if (commandLexer.size() > 0) {
+    if (!commandLexer.empty()) {
         this->condition = getBooleanCondition(commandLexer.at(0));
     } else {
         throw invalid_argument("Invalid condition argument - there's no condition");
@@ -51,18 +48,4 @@ void ConditionCommand::initConditionAndScope() {
         //  copy the scope without the condition
         this->scope.assign(commandLexer.begin() + 1, commandLexer.end());
     }
-}
-
-void ConditionCommand::updateParam(string &parm) {
-//    if (Lexer::isCharInString(parm, '"')) {
-//        Lexer::eraseAllSubStr(parm, "\"");
-//    } else {
-    try {
-        string temp = to_string(getDoubleFromExpression(parm));
-        parm = temp;
-    } catch (...) {
-        //  it's a funcCommand (i.e. Print Sleep...)
-
-    }
-//    }
 }

@@ -6,7 +6,7 @@
 
 class IfConditionCommand : public ConditionCommand {
 public:
-    explicit IfConditionCommand(map<string, Command *> *mapCommand) : ConditionCommand(mapCommand) {}
+    explicit IfConditionCommand(map<string, Command *> *map) : ConditionCommand(map) {}
 
     virtual void execute();
 };
