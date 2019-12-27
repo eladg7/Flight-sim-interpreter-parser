@@ -19,8 +19,18 @@ void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
 }
 
 void OpenServerCommand::execute() {
-    server->openSocket();
-    server->bindSocket();
-    server->listenToClients();
+    int isOk;
+    isOk = server->openSocket();
+    if (isOk < 0) {
+        exit(-1);
+    }
+    isOk = server->bindSocket();
+    if (isOk < 0) {
+        exit(-1);
+    }
+    isOk = server->listenToClients();
+    if (isOk < 0) {
+        exit(-1);
+    }
     server->acceptClients();
 }
