@@ -5,6 +5,7 @@
 #include "../../Lexer/Lexer.h"
 #include "../ex1Expressions.h"
 #include "../Parser.h"
+#include "../ex1Expressions.h"
 
 using namespace std;
 
@@ -19,13 +20,11 @@ protected:
     void updateCondition();
 
 private:
-    void updateParam(string &);
-
     void initConditionAndScope();
 
 public:
-    explicit ConditionCommand(map<string, Command *> *mapCommand) {
-        this->mapCommand = mapCommand;
+    explicit ConditionCommand(map<string, Command *> *map) {
+        this->mapCommand = map;
     }
 
     virtual void init(vector<string> &origLexer, int index);

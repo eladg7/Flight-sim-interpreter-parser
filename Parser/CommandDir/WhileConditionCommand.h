@@ -5,7 +5,7 @@
 
 class WhileConditionCommand : public ConditionCommand {
 public:
-    explicit WhileConditionCommand(map<string, Command *> *mapCommand) : ConditionCommand(mapCommand) {}
+    explicit WhileConditionCommand(map<string, Command *> *map) : ConditionCommand(map) {}
 
     virtual void execute();
 
