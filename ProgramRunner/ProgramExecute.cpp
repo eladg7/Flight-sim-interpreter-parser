@@ -4,10 +4,10 @@
 
 #include "ProgramExecute.h"
 
-void ProgramExecute::run() {
-    char filename[1024] = {0};
-    strcpy(filename, "fly.txt");
-    vector<string> *lexer = Lexer::getLexer(filename);
+void ProgramExecute::run(char *fileName) {
+//    char filename[1024] = {0};
+//    strcpy(filename, "fly.txt");
+    vector<string> *lexer = Lexer::getLexer(fileName);
 
     map<string, Command *> mapCommand;
 
@@ -42,6 +42,16 @@ void ProgramExecute::run() {
 
     Parser parser(mapCommand);
     parser.parse(*lexer);
+
+    while (server.getIsRunning() && client.getIsRunning()) {
+        sleep(1);
+    }
+
+    if(server.getIsRunning()){
+        server.turnOffRunningMode();
+    }else{
+        client.turnOffRunningMode();
+    }
 
     serverTh.join();
     clientTh.join();

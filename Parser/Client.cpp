@@ -1,6 +1,7 @@
 #include "Client.h"
 #include "SymbolTable.h"
 
+
 int Client::openSocket() {
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
@@ -34,6 +35,7 @@ int Client::connectClient() {
 }
 
 void Client::runningClientThread(Client &client) {
+    int is_sent=1;
     while (client.getClientSocket() == -1) {
         sleep(1);
     }
@@ -44,17 +46,19 @@ void Client::runningClientThread(Client &client) {
         while (!SymbolTable::Instance()->isQueueEmpty()) {
             string str = SymbolTable::Instance()->getLastMessage();
             int socket = client.getClientSocket();
-            int is_sent = send(socket, str.c_str(), str.size(), 0);
+            is_sent = send(socket, str.c_str(), str.size(), MSG_NOSIGNAL);
 
             if (is_sent == -1) {
-                client.turnOffRunningMode();
-                break;
+                cout <<"Turning off client..."<<endl;
+                exit(1);
             }
         }
         usleep(5000);
     }
-
-    close(client.getClientSocket());
+    if(is_sent > 0){
+        close(client.getClientSocket());
+    }
+    
 }
 
 void Client::turnOffRunningMode() {

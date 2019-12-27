@@ -19,7 +19,7 @@ class ProgramExecute {
 private:
 
 public:
-    static void run();
+    static void run(char * fileName);
 };
 
 #endif //FLIGHT_SIM1_PROGRAMEXECUTE_H

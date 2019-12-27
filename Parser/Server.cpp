@@ -66,18 +66,20 @@ void Server::runningServerThread(Server &server) {
     server.turnOnRunningMode();
 
     while (server.getIsRunning()) {
-        isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
+
+        isRead = recv(server.getClientSoc(), buffer, sizeof(buffer),MSG_NOSIGNAL);
         if (isRead <= 0) {
-            server.turnOffRunningMode();
-            break;
+            cout <<"Turning off server..."<<endl;
+            exit(1);
         }
         vector<double> values = valuesInDouble(buffer);
         SymbolTable::Instance()->updateSimMap(values);
 
         usleep(5000);
     }
-
-    close(server.getSocketFD());
+    if(isRead > 0){
+        close(server.getSocketFD());
+    }
 }
 
 vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
