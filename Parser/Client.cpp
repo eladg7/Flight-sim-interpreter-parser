@@ -35,7 +35,7 @@ int Client::connectClient() {
 }
 
 void Client::runningClientThread(Client &client) {
-    int is_sent=1;
+    int is_sent = 1;
     while (client.getClientSocket() == -1) {
         sleep(1);
     }
@@ -46,19 +46,19 @@ void Client::runningClientThread(Client &client) {
         while (!SymbolTable::Instance()->isQueueEmpty()) {
             string str = SymbolTable::Instance()->getLastMessage();
             int socket = client.getClientSocket();
-            is_sent = send(socket, str.c_str(), str.size(), MSG_NOSIGNAL);
+            is_sent = send(socket, str.c_str(), str.size(), 0);
 
             if (is_sent == -1) {
-                cout <<"Turning off client..."<<endl;
+                cout << "Turning off client..." << endl;
                 exit(1);
             }
         }
         usleep(5000);
     }
-    if(is_sent > 0){
-        close(client.getClientSocket());
-    }
-    
+
+    close(client.getClientSocket());
+
+
 }
 
 void Client::turnOffRunningMode() {
