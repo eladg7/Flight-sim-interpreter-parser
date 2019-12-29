@@ -60,7 +60,7 @@ void Server::runningServerThread(Server &server) {
     char buffer[NUMBER_OF_VALUES] = {0};
     int isRead = 0;
     while (server.getClientSoc() == -1
-           || server.getSocketFD() == -1) {
+           || server.getSocketFD() == -1) { //while socket with client isnt open
         sleep(1);
     }
     server.turnOnRunningMode();
@@ -68,12 +68,12 @@ void Server::runningServerThread(Server &server) {
     while (server.getIsRunning()) {
 
         isRead = read(server.getClientSoc(), buffer, sizeof(buffer));
-        if (isRead <= 0) {
+        if (isRead <= 0) {//error getting info from client.
             cout << "Turning off server..." << endl;
             exit(1);
         }
-        vector<double> values = valuesInDouble(buffer);
-        SymbolTable::Instance()->updateSimMap(values);
+        vector<double> values = valuesInDouble(buffer);//get values fro, buffer
+        SymbolTable::Instance()->updateSimMap(values);// update all sim values
 
         usleep(5000);
     }
@@ -85,7 +85,7 @@ void Server::runningServerThread(Server &server) {
 vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
     vector<double> valuesInDouble;
     vector<string> valuesInString = Lexer::split(buffer, ',');
-    valuesInDouble.reserve(valuesInString.size());
+    valuesInDouble.reserve(valuesInString.size());//init
     for (const string &val:valuesInString) {
         valuesInDouble.push_back(atof(val.c_str()));
     }

@@ -61,6 +61,7 @@ std::string &Lexer::trim(std::string &str, const std::string &chars) {
     return ltrim(rtrim(str, chars), chars);
 }
 
+
 bool Lexer::isCharInString(const string &str, char c) {
     return (strchr(str.c_str(), c));
 }
@@ -89,6 +90,7 @@ vector<string> Lexer::methodsOpenParethesis(const string &line) {
                            afterParenthesis.end());
     bufferByParenthesis.erase(bufferByParenthesis.end() - 1);
 
+    //split by parameters divided by ,
     vector<string> parameters = split(afterParenthesis, ',');
     for (string s:parameters) {
         bufferByParenthesis.push_back(s);
@@ -129,14 +131,15 @@ vector<string> *Lexer::getLexer(char *fileName) {
         if (line.empty() || line.rfind("//", 0) == 0) {
             continue; //comment.
         }
-        if (isCondition(split(trim(line), ' ').at(0))) { //conditions
+        if (isCondition(split(trim(line), ' ').at(0))) {
+            //conditions splits
             line = trim(line);
             vector<string> condition = splitByFirstChar(line, ' ');
             lexer->push_back(trim(condition.at(0)));
             lexer->push_back(trim(condition.at(1)));
 
         } else if (line.find("var") != string::npos
-                   && isCharInString(line, '{')) { // func
+                   && isCharInString(line, '{')) { // func splits
             vector<string> func = splitByFirstChar(line, '(');
             lexer->push_back(trim(func.at(0)));
             string variablesToFunc = func.at(1);
@@ -149,7 +152,7 @@ vector<string> *Lexer::getLexer(char *fileName) {
                 lexer->push_back("=");
                 lexer->push_back(trim(equal.at(0)));
                 lexer->push_back(trim(equal.at(1)));
-            } else {// var x = ...
+            } else {// var x = ... splits
                 line = trim(line);
                 buffer = splitByFirstChar(line, ' ');
                 lexer->push_back(buffer.at(0));// var

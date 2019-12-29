@@ -2,6 +2,7 @@
 #include "../ex1Expressions.h"
 
 void UpdateVarCommand::init(vector<string> &origLexer, int index) {
+    // x = 4 is an update
     name = origLexer.at(index + 1);
     string expression = origLexer.at(index + 2);
     newValue = Interpreter::getDoubleFromExpression(expression);

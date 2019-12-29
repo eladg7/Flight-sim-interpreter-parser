@@ -1,13 +1,9 @@
-//
-// Created by yekaterina on 16/12/2019.
-//
-
 #include "SymbolTable.h"
-//singeltone
+
 
 SymbolTable *SymbolTable::mInstance = nullptr;
 
-SymbolTable *SymbolTable::Instance() {
+SymbolTable *SymbolTable::Instance() {//singleton
     if (mInstance == nullptr) {
         mInstance = new SymbolTable();
     }
@@ -16,6 +12,7 @@ SymbolTable *SymbolTable::Instance() {
 
 
 void SymbolTable::updateSymbolTable() {
+    //copy to symT and simMap to not deadnot later
     symTLock.lock();
     map<string, Variable> tempSymTMap = symT;
     symTLock.unlock();
@@ -25,14 +22,15 @@ void SymbolTable::updateSymbolTable() {
     simMapLock.unlock();
 
     for (map<string, Variable>::iterator it = tempSymTMap.begin();
-         it != tempSymTMap.end(); ++it) {
-        if (it->second.getInteraction() == FromSim) { // <- from sim to
+         it != tempSymTMap.end(); ++it) {//go through symbol table
+        if (it->second.getInteraction() == FromSim) { // <- (from sim to)
             string simPath = it->second.getSim();
             if (tempSimMap.find(simPath) != tempSimMap.end()) {
                 double newValue = tempSimMap[it->second.getSim()];
                 string key = it->first;
                 Variable v(key,newValue,FromSim,simPath);
 
+                //update variable value in symbol table
                 symTLock.lock();
                 symT[key]=v;
                 symTLock.unlock();
@@ -58,12 +56,12 @@ bool SymbolTable::isInMap(const string &key) {
 void SymbolTable::updateSimMap(vector<double> values) {
     int valuesIndex = 0;
     for (const string &key:nodesFromSim) {
-        if (valuesIndex < values.size()) {
+        if (valuesIndex < values.size()) { // if there is a value for in in values
             simMapLock.lock();
             simMap[key] = values.at(valuesIndex);
             simMapLock.unlock();
 
-        } else {
+        } else {//no value initilaize with 0
             simMapLock.lock();
             simMap[key] = 0;
             simMapLock.unlock();

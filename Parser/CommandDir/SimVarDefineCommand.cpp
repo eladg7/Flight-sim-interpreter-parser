@@ -6,6 +6,7 @@
 #include "../SymbolTable.h"
 
 void SimVarDefineCommand::init(vector<string> &origLexer, int index) {
+    //var rpm -> sim("...")
     name=origLexer.at(index+1);
     if(origLexer.at(index+2)=="<-"){
         inter =FromSim;
