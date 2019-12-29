@@ -9,7 +9,7 @@
 #include "Command.h"
 #include "../Server.h"
 #include <thread>
-
+#include "../ex1Expressions.h"
 
 class OpenServerCommand : public Command {
     Server *server{};

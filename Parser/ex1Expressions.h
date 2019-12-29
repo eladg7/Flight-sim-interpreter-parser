@@ -190,6 +190,12 @@ public:
                            char *lastToken);
 
     virtual ~Interpreter() = default;
+
+    static BooleanOperator *getBooleanCondition(string parm);
+
+    static BooleanOperator *getBooleanOperator(string expression, Expression *left, Expression *right);
+
+    static double getDoubleFromExpression(string parm);
 };
 
 static vector<string> isBooleanOperator(string expression) {
@@ -202,55 +208,8 @@ static vector<string> isBooleanOperator(string expression) {
     return {first, last};
 }
 
-static BooleanOperator *getBooleanOperator(string expression, Expression *left, Expression *right) {
-    BooleanOperator *booleanOperator;
-    if (expression.find(">=") != string::npos) {
-        booleanOperator = new GreaterEqualOperator(left, right);
-    } else if (expression.find(">") != string::npos) {
-        booleanOperator = new GreaterOperator(left, right);
-    } else if (expression.find("<=") != string::npos) {
-        booleanOperator = new BelowEqualOperator(left, right);
-    } else if (expression.find("<") != string::npos) {
-        booleanOperator = new BelowOperator(left, right);
-    } else if (expression.find("==") != string::npos) {
-        booleanOperator = new EqualOperator(left, right);
-    } else {
-        //   it must be '!='
-        booleanOperator = new NotEqualOperator(left, right);
-    }
-
-    return booleanOperator;
-}
-
-static BooleanOperator *getBooleanCondition(string parm) {
-    Interpreter interpreter;
-    Lexer::eraseAllSubStr(parm, " ");
-    vector<string> operatorArguments = isBooleanOperator(parm);
-    Expression *left = interpreter.interpret(operatorArguments.at(0));
-    Expression *right = interpreter.interpret(operatorArguments.at(1));
-    BooleanOperator *op = getBooleanOperator(parm, left, right);
-    return op;
-}
-
 static bool evaluateBooleanOperator(BooleanOperator *booleanOperator) {
     return (booleanOperator->calculate());
-}
-
-static double getDoubleFromExpression(string parm) {
-    Interpreter interpreter;
-    double value = 0;
-    Lexer::eraseAllSubStr(parm, " ");
-    try {
-        Expression *e = interpreter.interpret(parm);
-        value = e->calculate();
-        delete e;
-    } catch (const char *&exep) {
-        cout << " Error calculating value of " + parm
-                + " :" + exep << endl;
-    }
-
-
-    return value;
 }
 
 #endif //FLIGHT_SIM1_EX1EXPRESSIONS_H
