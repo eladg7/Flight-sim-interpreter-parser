@@ -7,6 +7,7 @@
 
 
 void ConnectClientCommand::init(vector<std::string> &origLexer, int index) {
+    //put the needed params
     commandLexer.clear();
     for (int i = 1; i <= numberOfParameters; i++) {
         string parm = origLexer.at(index + i);
@@ -18,6 +19,7 @@ void ConnectClientCommand::init(vector<std::string> &origLexer, int index) {
         commandLexer.push_back(parm);
     }
 
+    // init to all params
     double port = stoi(commandLexer.at(1));
     client->setPort(port);
     auto ip = commandLexer.at(0);

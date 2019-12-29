@@ -1,7 +1,3 @@
-//
-// Created by yekaterina on 20/12/2019.
-//
-
 #include "VarDefineCommand.h"
 #include "LocalVarDefineCommand.h"
 #include "SimVarDefineCommand.h"

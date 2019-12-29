@@ -382,7 +382,6 @@ bool Interpreter::isOperator(const string &s) {
 }
 
 bool Interpreter::isVariable(const string &s) {
-//    return !(this->VariableAndValue.find(s) == this->VariableAndValue.end()); //variable in map?
     return SymbolTable::Instance()->isInMap(s);
 }
 
