@@ -1,10 +1,4 @@
-//
-// Created by yekaterina on 20/12/2019.
-//
-
 #include "VarDefineCommand.h"
-#include "LocalVarDefineCommand.h"
-#include "SimVarDefineCommand.h"
 
 void VarDefineCommand::init(vector<string> &origLexer, int index) {
     if (origLexer.at(index + 1) == "=") {

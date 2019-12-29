@@ -1,6 +1,7 @@
 #include "ConditionCommand.h"
 
 void ConditionCommand::init(vector<string> &origLexer, int index) {
+    //  clear the command lexer because it might have been in use before
     commandLexer.clear();
     bool firstRun = true;
     unsigned int loopLimit = origLexer.size() - index;

@@ -1,4 +1,3 @@
-
 #include "ProgramExecute.h"
 
 void ProgramExecute::run(char *fileName) {
@@ -6,6 +5,7 @@ void ProgramExecute::run(char *fileName) {
 
     map<string, Command *> mapCommand;
 
+    //  set the initial command map
     Server server;
     OpenServerCommand serverCommand(server);
     mapCommand["openDataServer"] = &serverCommand;
