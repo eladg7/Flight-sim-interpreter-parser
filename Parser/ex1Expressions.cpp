@@ -386,3 +386,49 @@ bool Interpreter::isVariable(const string &s) {
     return SymbolTable::Instance()->isInMap(s);
 }
 
+BooleanOperator *Interpreter::getBooleanOperator(string expression, Expression *left, Expression *right) {
+    BooleanOperator *booleanOperator;
+    if (expression.find(">=") != string::npos) {
+        booleanOperator = new GreaterEqualOperator(left, right);
+    } else if (expression.find('>') != string::npos) {
+        booleanOperator = new GreaterOperator(left, right);
+    } else if (expression.find("<=") != string::npos) {
+        booleanOperator = new BelowEqualOperator(left, right);
+    } else if (expression.find('<') != string::npos) {
+        booleanOperator = new BelowOperator(left, right);
+    } else if (expression.find("==") != string::npos) {
+        booleanOperator = new EqualOperator(left, right);
+    } else {
+        //   it must be '!='
+        booleanOperator = new NotEqualOperator(left, right);
+    }
+
+    return booleanOperator;
+}
+
+BooleanOperator *Interpreter::getBooleanCondition(string parm) {
+    Interpreter interpreter;
+    Lexer::eraseAllSubStr(parm, " ");
+    vector<string> operatorArguments = isBooleanOperator(parm);
+    Expression *left = interpreter.interpret(operatorArguments.at(0));
+    Expression *right = interpreter.interpret(operatorArguments.at(1));
+    BooleanOperator *op = getBooleanOperator(parm, left, right);
+    return op;
+}
+
+double Interpreter::getDoubleFromExpression(string parm) {
+    Interpreter interpreter;
+    double value = 0;
+    Lexer::eraseAllSubStr(parm, " ");
+    try {
+        Expression *e = interpreter.interpret(parm);
+        value = e->calculate();
+        delete e;
+    } catch (const char *&exep) {
+        cout << " Error calculating value of " + parm
+                + " :" + exep << endl;
+    }
+
+
+    return value;
+}

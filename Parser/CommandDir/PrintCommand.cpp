@@ -22,7 +22,7 @@ string PrintCommand::updateArgument() {
     if (Lexer::isCharInString(temp, '"')) {
         Lexer::eraseAllSubStr(temp, "\"");
     } else {
-        temp = to_string(getDoubleFromExpression(temp));
+        temp = to_string(Interpreter::getDoubleFromExpression(temp));
     }
     return temp;
 }

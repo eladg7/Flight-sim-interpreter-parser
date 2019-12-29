@@ -34,12 +34,12 @@ void ConditionCommand::updateCondition() {
     if (this->condition != nullptr) {
         delete this->condition;
     }
-    this->condition = getBooleanCondition(commandLexer.at(0));
+    this->condition = Interpreter::getBooleanCondition(commandLexer.at(0));
 }
 
 void ConditionCommand::initConditionAndScope() {
     if (!commandLexer.empty()) {
-        this->condition = getBooleanCondition(commandLexer.at(0));
+        this->condition = Interpreter::getBooleanCondition(commandLexer.at(0));
     } else {
         throw invalid_argument("Invalid condition argument - there's no condition");
     }

@@ -4,7 +4,7 @@
 void UpdateVarCommand::init(vector<string> &origLexer, int index) {
     name = origLexer.at(index + 1);
     string expression = origLexer.at(index + 2);
-    newValue = getDoubleFromExpression(expression);
+    newValue = Interpreter::getDoubleFromExpression(expression);
 }
 
 void UpdateVarCommand::execute() {
