@@ -1,7 +1,3 @@
-//
-// Created by elad on 19/12/2019.
-//
-
 #ifndef FLIGHT_SIM1_SLEEPCOMMAND_H
 #define FLIGHT_SIM1_SLEEPCOMMAND_H
 
@@ -9,6 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <thread>
+#include "../ex1Expressions.h"
 
 class SleepCommand : public FuncCommand {
 public:

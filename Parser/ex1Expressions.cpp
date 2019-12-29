@@ -386,17 +386,17 @@ bool Interpreter::isVariable(const string &s) {
     return SymbolTable::Instance()->isInMap(s);
 }
 
-BooleanOperator *Interpreter::getBooleanOperator(string expression, Expression *left, Expression *right) {
+BooleanOperator *Interpreter::getBooleanOperator(string expressionString, Expression *left, Expression *right) {
     BooleanOperator *booleanOperator;
-    if (expression.find(">=") != string::npos) {
+    if (expressionString.find(">=") != string::npos) {
         booleanOperator = new GreaterEqualOperator(left, right);
-    } else if (expression.find('>') != string::npos) {
+    } else if (expressionString.find('>') != string::npos) {
         booleanOperator = new GreaterOperator(left, right);
-    } else if (expression.find("<=") != string::npos) {
+    } else if (expressionString.find("<=") != string::npos) {
         booleanOperator = new BelowEqualOperator(left, right);
-    } else if (expression.find('<') != string::npos) {
+    } else if (expressionString.find('<') != string::npos) {
         booleanOperator = new BelowOperator(left, right);
-    } else if (expression.find("==") != string::npos) {
+    } else if (expressionString.find("==") != string::npos) {
         booleanOperator = new EqualOperator(left, right);
     } else {
         //   it must be '!='

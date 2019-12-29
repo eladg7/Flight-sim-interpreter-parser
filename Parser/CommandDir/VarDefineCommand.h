@@ -1,13 +1,10 @@
-//
-// Created by yekaterina on 20/12/2019.
-//
-
 #ifndef FLIGHT_SIM1_VARDEFINECOMMAND_H
 #define FLIGHT_SIM1_VARDEFINECOMMAND_H
 
 
 #include "Command.h"
-
+#include "LocalVarDefineCommand.h"
+#include "SimVarDefineCommand.h"
 
 class VarDefineCommand : public Command{
 private:

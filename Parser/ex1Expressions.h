@@ -193,7 +193,7 @@ public:
 
     static BooleanOperator *getBooleanCondition(string parm);
 
-    static BooleanOperator *getBooleanOperator(string expression, Expression *left, Expression *right);
+    static BooleanOperator *getBooleanOperator(string expressionString, Expression *left, Expression *right);
 
     static double getDoubleFromExpression(string parm);
 };

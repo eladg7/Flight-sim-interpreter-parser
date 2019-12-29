@@ -10,6 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include "../Lexer/Lexer.h"
 
 #define NODE_STARTER "<node>"
 #define NODE_END "</node>"

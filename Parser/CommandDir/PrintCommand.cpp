@@ -2,6 +2,7 @@
 #include "../../Lexer/Lexer.h"
 
 void PrintCommand::execute() {
+    //  the argument might be a variable, update it to get the value
     string msg = updateArgument();
     if (Lexer::isCharInString(msg, '"')) {
         Lexer::eraseAllSubStr(msg, "\"");

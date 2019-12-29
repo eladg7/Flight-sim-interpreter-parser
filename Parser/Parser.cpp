@@ -11,6 +11,7 @@ void Parser::parse(vector<string> &lexer) {
             c->execute();
             index += c->getNumberOfParam();
         } else if ((index + 1 < lexer.size()) && isGenericFunction(lexer.at(index + 1))) {
+            //  this is a new function, add it to the map and initialize it
             auto *tempCommand = new GenericFunctionCommand(&commandMap);
             commandMap[word] = tempCommand;
             tempCommand->init(lexer, index);
