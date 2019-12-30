@@ -21,14 +21,14 @@ private:
 
     void initArgumentAndScope();
 
-    void initFunction(vector<string> &origLexer, int index);
+    void initFunction(vector<string> &origLexer, unsigned int index);
 
 public :
     explicit GenericFunctionCommand(map<string, Command *> *map) {
         this->mapCommand = map;
     }
 
-    virtual void init(vector<string> &origLexer, int index);
+    virtual void init(vector<string> &origLexer, unsigned int index);
 
     virtual void execute();
 

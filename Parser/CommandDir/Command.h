@@ -20,7 +20,7 @@ public:
         return numberOfParameters;
     }
 
-    virtual void init(vector<string> &origLexer, int index) = 0;
+    virtual void init(vector<string> &origLexer,unsigned int index) = 0;
 
     virtual void execute() = 0;
 

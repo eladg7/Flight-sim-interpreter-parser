@@ -2,7 +2,7 @@
 #include "../SymbolTable.h"
 // Server side C/C++ program to demonstrate Socket programming
 
-void OpenServerCommand::init(vector<std::string> &origLexer, int index) {
+void OpenServerCommand::init(vector<std::string> &origLexer, unsigned int index) {
     commandLexer.clear();
     for (int i = 1; i <= numberOfParameters; i++) {
         string parm = origLexer.at(index + i);

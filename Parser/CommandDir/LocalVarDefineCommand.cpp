@@ -1,7 +1,7 @@
 #include "LocalVarDefineCommand.h"
 #include "../ex1Expressions.h"
 
-void LocalVarDefineCommand::init(vector<string> &origLexer, int index) {
+void LocalVarDefineCommand::init(vector<string> &origLexer,unsigned int index) {
     // init for var x = 2
     name = origLexer.at(index + 2);// at 1 there is a =
     value = Interpreter::getDoubleFromExpression(origLexer.at(index + 3));

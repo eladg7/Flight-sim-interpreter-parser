@@ -13,7 +13,7 @@ public:
     }
     ~UpdateVarCommand(){}
 
-    virtual void init(vector<string> &origLexer, int index);
+    virtual void init(vector<string> &origLexer,unsigned int index);
 
     virtual void execute();
 
