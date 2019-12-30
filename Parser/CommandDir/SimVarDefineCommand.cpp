@@ -5,7 +5,7 @@
 #include "SimVarDefineCommand.h"
 #include "../SymbolTable.h"
 
-void SimVarDefineCommand::init(vector<string> &origLexer, int index) {
+void SimVarDefineCommand::init(vector<string> &origLexer,unsigned int index) {
     //var rpm -> sim("...")
     name=origLexer.at(index+1);
     if(origLexer.at(index+2)=="<-"){

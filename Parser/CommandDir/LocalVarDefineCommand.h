@@ -5,17 +5,19 @@
 #include "VarDefineCommand.h"
 #include "../Variable.h"
 
-class LocalVarDefineCommand: public Command {
+class LocalVarDefineCommand : public Command {
 private:
     string name;
     double value;
 public:
-    LocalVarDefineCommand(){
-        numberOfParameters=3;
+    LocalVarDefineCommand() {
+        numberOfParameters = 3;
     }
-    ~LocalVarDefineCommand(){}
 
-    virtual void init(vector<string> &origLexer, int index);
+    ~LocalVarDefineCommand() {}
+
+    virtual void init(vector<string> &origLexer, unsigned int index);
+
     virtual void execute();
 
 };

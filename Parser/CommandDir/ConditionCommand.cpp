@@ -1,6 +1,6 @@
 #include "ConditionCommand.h"
 
-void ConditionCommand::init(vector<string> &origLexer, int index) {
+void ConditionCommand::init(vector<string> &origLexer, unsigned int index) {
     //  clear the command lexer because it might have been in use before
     commandLexer.clear();
     bool firstRun = true;

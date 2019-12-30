@@ -33,7 +33,7 @@ int Client::connectClient() {
     }
     return 1;
 }
-= 1
+
 void Client::runningClientThread(Client &client) {
     int is_sent;
 

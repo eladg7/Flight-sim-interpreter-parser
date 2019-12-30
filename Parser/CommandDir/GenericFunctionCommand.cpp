@@ -1,6 +1,6 @@
 #include "GenericFunctionCommand.h"
 
-void GenericFunctionCommand::init(vector<string> &origLexer, int index) {
+void GenericFunctionCommand::init(vector<string> &origLexer, unsigned int index) {
     if (!this->initiated) {
         initFunction(origLexer, index);
     } else {
@@ -9,11 +9,11 @@ void GenericFunctionCommand::init(vector<string> &origLexer, int index) {
     }
 }
 
-void GenericFunctionCommand::initFunction(vector<string> &origLexer, int index) {
+void GenericFunctionCommand::initFunction(vector<string> &origLexer, unsigned int index) {
     commandLexer.clear();
     bool firstRun = true;
     unsigned int loopLimit = origLexer.size() - index;
-    for (int i = 1; i < loopLimit; i++) {
+    for (unsigned int i = 1; i < loopLimit; i++) {
         string parm = origLexer.at(index + i);
         if (firstRun) {
             if (Lexer::isCharInString(parm, '{')) {

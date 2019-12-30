@@ -9,19 +9,21 @@
 #include "Command.h"
 #include "../Variable.h"
 
-class SimVarDefineCommand: public Command {
+class SimVarDefineCommand : public Command {
 private:
     string name;
     double value;
     string simPath;
     Interaction inter;
 public:
-    SimVarDefineCommand(){
-        numberOfParameters=4;
+    SimVarDefineCommand() {
+        numberOfParameters = 4;
     }
-    ~SimVarDefineCommand(){}
 
-    virtual void init(vector<string> &origLexer, int index);
+    ~SimVarDefineCommand() {}
+
+    virtual void init(vector<string> &origLexer, unsigned int index);
+
     virtual void execute();
 
 };

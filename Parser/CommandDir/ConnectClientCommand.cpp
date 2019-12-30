@@ -6,7 +6,7 @@
 #include "../ex1Expressions.h"
 
 
-void ConnectClientCommand::init(vector<std::string> &origLexer, int index) {
+void ConnectClientCommand::init(vector<std::string> &origLexer,unsigned int index) {
     //put the needed params
     commandLexer.clear();
     for (int i = 1; i <= numberOfParameters; i++) {
