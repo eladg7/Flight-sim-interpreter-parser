@@ -41,4 +41,6 @@ void ProgramExecute::run(char *fileName) {
 
     serverTh.join();
     clientTh.join();
+
+    delete lexer;
 }
