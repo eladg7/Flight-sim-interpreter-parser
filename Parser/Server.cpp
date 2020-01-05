@@ -1,6 +1,7 @@
 #include "Server.h"
 
-#define NUMBER_OF_VALUES 400
+vector<string> Server::previousValues;
+
 
 int Server::openSocket() {
     socketFD = socket(AF_INET, SOCK_STREAM, 0);
@@ -84,7 +85,9 @@ void Server::runningServerThread(Server &server) {
 
 vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
     vector<double> valuesInDouble;
-    vector<string> valuesInString = Lexer::split(buffer, ',');
+    vector<string> splittedByN = Lexer::split(buffer, '\n');
+    vector<string> valuesInString = getRelevantValuesVector(buffer, splittedByN);
+
     valuesInDouble.reserve(valuesInString.size());//init
     for (const string &val:valuesInString) {
         valuesInDouble.push_back(atof(val.c_str()));
@@ -92,6 +95,41 @@ vector<double> Server::valuesInDouble(char buffer[NUMBER_OF_VALUES]) {
 
     return valuesInDouble;
 }
+
+vector<string> Server::getRelevantValuesVector(char buffer[NUMBER_OF_VALUES], vector<string> splittedByN) {
+    vector<string> valuesInString;
+    if (splittedByN.size() == 0) {
+        return valuesInString;
+    }
+    auto firstChunk = Lexer::split(splittedByN.at(0), ',');
+    if (splittedByN.size() == 1) {
+        //  the relevant values are in the last chunk
+        valuesInString = firstChunk;
+    } else {
+        auto secondChunk = Lexer::split(splittedByN.at(1), ',');
+        if (secondChunk.size() == 36) {
+            //  update values from the first chunk, save the rest
+            Server::previousValues.clear();
+            //  push back the rest of the values
+            valuesInString = secondChunk;
+        } else if (firstChunk.size() == 36) {
+            //  update values from the first chunk, save the rest
+            Server::previousValues.clear();
+            valuesInString = firstChunk;
+            //  push back the rest of the values
+            Server::previousValues = secondChunk;
+        } else if (firstChunk.size() < 36) {
+            //  update values from the first chunk and add them to the previous values, save the rest
+            Server::previousValues.insert(end(Server::previousValues), begin(firstChunk), end(firstChunk));
+            valuesInString.clear();
+            valuesInString = Server::previousValues;
+            //  push back the rest of the values
+            Server::previousValues = secondChunk;
+        }
+    }
+    return valuesInString;
+}
+
 
 void Server::turnOffRunningMode() {
     isRunning = false;
