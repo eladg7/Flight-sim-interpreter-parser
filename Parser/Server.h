@@ -17,21 +17,24 @@
 
 using namespace std;
 #define MAX_CONNECTED 1
+#define NUMBER_OF_VALUES 1024
 
 class Server {
 private:
     double port;
-    int socketFD ;
+    int socketFD;
     sockaddr_in address{};
     int clientSoc;
-    bool isRunning=false;
+    bool isRunning = false;
+    static vector<string> previousValues;
+
+    static vector<string> getRelevantValuesVector(char buffer[NUMBER_OF_VALUES], vector<string> splittedByN);
 
 public:
-    Server(){
-        port=0;
-        socketFD=-1;
-        clientSoc=-1;
-
+    Server() {
+        port = 0;
+        socketFD = -1;
+        clientSoc = -1;
     }
 
 
@@ -62,10 +65,10 @@ public:
     static void runningServerThread(Server &server);
 
     void turnOffRunningMode();
+
     void turnOnRunningMode();
-    bool getIsRunning(){return isRunning;}
 
-
+    bool getIsRunning() { return isRunning; }
 
 
 };
