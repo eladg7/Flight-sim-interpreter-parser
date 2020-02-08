@@ -25,10 +25,12 @@ private:
     int socketFD;
     sockaddr_in address{};
     int clientSoc;
-    bool isRunning = false;
+    bool isRunning = true;
     static vector<string> previousValues;
 
     static vector<string> getRelevantValuesVector(char buffer[NUMBER_OF_VALUES], vector<string> splittedByN);
+
+    mutex serverMutex;
 
 public:
     Server() {
@@ -46,7 +48,9 @@ public:
         return socketFD;
     }
 
-    int getClientSoc() { return clientSoc; }
+    int getClientSoc() {
+        return clientSoc;
+    }
 
     int openSocket();
 
@@ -68,9 +72,12 @@ public:
 
     void turnOnRunningMode();
 
-    bool getIsRunning() { return isRunning; }
-
-
+    bool getIsRunning() {
+        serverMutex.lock();
+        bool result = isRunning;
+        serverMutex.unlock();
+        return result;
+    }
 };
 
 

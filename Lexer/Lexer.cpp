@@ -1,10 +1,7 @@
 #include "Lexer.h"
 
 vector<string> Lexer::getLinesFromFile(char *fileName) {
-    char buffer[4000];
-    getcwd(buffer, sizeof(buffer));
-    strcat(buffer, "/");
-    ifstream input(strcat(buffer, fileName));
+    ifstream input(fileName);
 
     if (!input || !input.is_open()) {
         throw invalid_argument("Could not open source file - Lexer");

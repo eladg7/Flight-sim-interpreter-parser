@@ -62,9 +62,8 @@ void Server::runningServerThread(Server &server) {
     int isRead = 0;
     while (server.getClientSoc() == -1
            || server.getSocketFD() == -1) { //while socket with client isnt open
-        sleep(1);
+        usleep(5000);
     }
-    server.turnOnRunningMode();
 
     while (server.getIsRunning()) {
 
@@ -132,10 +131,14 @@ vector<string> Server::getRelevantValuesVector(char buffer[NUMBER_OF_VALUES], ve
 
 
 void Server::turnOffRunningMode() {
+    serverMutex.lock();
     isRunning = false;
+    serverMutex.unlock();
 }
 
 void Server::turnOnRunningMode() {
+    serverMutex.lock();
     isRunning = true;
+    serverMutex.unlock();
 }
 
