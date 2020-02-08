@@ -38,10 +38,8 @@ void Client::runningClientThread(Client &client) {
     int is_sent;
 
     while (client.getClientSocket() == -1) {//while socket is not open
-        sleep(1);
+        usleep(5000);
     }
-
-    client.turnOnRunningMode();
 
     while (client.getIsRunning()) {
         while (!SymbolTable::Instance()->isQueueEmpty()) {// checks message queue
@@ -61,9 +59,13 @@ void Client::runningClientThread(Client &client) {
 }
 
 void Client::turnOffRunningMode() {
+    clientMutex.lock();
     isRunning = false;
+    clientMutex.unlock();
 }
 
 void Client::turnOnRunningMode() {
+    clientMutex.lock();
     isRunning = true;
+    clientMutex.unlock();
 }

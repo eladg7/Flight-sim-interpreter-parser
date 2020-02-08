@@ -12,6 +12,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <cstring>
+#include <mutex>
 
 using namespace std;
 
@@ -22,14 +23,22 @@ private:
     int port = 0;
 
     char ip[32] = {0};
-    bool isRunning=false;
+
+    bool isRunning = true;
+
+    mutex clientMutex;
 public:
 
     void turnOffRunningMode();
 
     void turnOnRunningMode();
 
-    bool getIsRunning(){return isRunning;}
+    bool getIsRunning() {
+        clientMutex.lock();
+        bool result = isRunning;
+        clientMutex.unlock();
+        return result;
+    }
 
     int openSocket();
 
@@ -42,7 +51,7 @@ public:
     static void runningClientThread(Client &client);
 
     void setPort(int p) {
-       port = p;
+        port = p;
     }
 
     void setIP(char *x) {

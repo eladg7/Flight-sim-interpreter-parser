@@ -8,13 +8,20 @@ void PrintCommand::execute() {
         Lexer::eraseAllSubStr(msg, "\"");
     }
 
-    if (msg == "done") { //quit server and client.
-        client->turnOffRunningMode();
-        server->turnOffRunningMode();
-    }
-
     if (!msg.empty()) {
         cout << msg << endl;
+    }
+
+    //  check if the message equals to done - and if so stop the server
+    auto lowerCaseMsg = msg;
+    transform(lowerCaseMsg.begin(), lowerCaseMsg.end(), lowerCaseMsg.begin(),
+              [](unsigned char c) { return tolower(c); });
+
+    Lexer::trim(lowerCaseMsg);
+
+    if (lowerCaseMsg == "done") { //quit server and client.
+        client->turnOffRunningMode();
+        server->turnOffRunningMode();
     }
 }
 
